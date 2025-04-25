@@ -1,0 +1,113 @@
+Build a modern, AI-themed company website for "RSV Infotech Pte Ltd" (https://myrsv.com), with smooth animations, interactive transitions, and a clean, futuristic UI. The theme should reflect AI, innovation, and technology excellence. Use ReactJS with TailwindCSS for styling, Framer Motion for animations, and Shadcn UI components.
+
+---
+
+🎨 **Color Palette (AI Inspired):**
+- Deep Space Blue: #0B0C28
+- Neon Cyan: #00F5FF
+- Electric Purple: #A020F0
+- Gradient overlays blending Neon Cyan and Electric Purple
+- Clean white text (#FFFFFF) on dark backgrounds
+
+---
+
+💡 **Font Suggestion:**
+- Headings: Orbitron (futuristic feel)
+- Body: Inter or Poppins
+
+---
+
+🌐 **Website Structure and Pages:**
+
+1. **Home Page**
+   - Big animated AI/Neural Network-themed hero banner
+   - Headline: "Empowering Businesses with Cutting-Edge IT Solutions and AI Innovation"
+   - Sub-headline: "RSV Infotech Pte Ltd — Managed IT Services, Custom Software, Cloud, Networking, Cybersecurity & AI-Powered Solutions"
+   - CTA Button: "Explore Our Solutions" (Smooth scroll to Solutions section)
+   - Use particle.js or similar background animation to show floating AI elements
+
+2. **About Us**
+   - Section Title: "Who We Are"
+   - Content:
+     > *RSV Infotech Pte Ltd is a Singapore-based IT Solutions Provider with over 20 years of industry experience. We specialize in Managed IT Services, Cloud Computing, VoIP, Networking, IT Security, Data Backup & Recovery, Custom Software Development, and AI-powered automation.*
+     > 
+     > *Our mission is to help businesses stay ahead of the curve through technology-driven strategies, leveraging innovation, and ensuring secure, reliable infrastructure.*
+   - Timeline animation showing company milestones
+   - Floating neural network visuals behind the content
+
+3. **Our Services**
+   - Animated service cards with hover effects
+   - Services:
+     - Managed IT Services
+     - Cloud Computing & Hosting
+     - VoIP / IP Telephony Solutions
+     - IT Networking & Security
+     - Firewall & VPN Solutions
+     - Data Backup & Disaster Recovery
+     - Custom Software Development (Web, Windows, SaaS)
+     - AI-powered Business Automation
+   - Each service card should have a small AI-icon or motion effect
+
+4. **Why Choose Us?**
+   - Animated infographic showing key strengths:
+     - 20+ Years Experience
+     - 100+ Happy Clients
+     - Proven Track Record
+     - Scalable Solutions
+     - Cutting-edge AI Integration
+   - Hover reveal animations for each point
+
+5. **Contact Us**
+   - Section Title: "Get in Touch"
+   - Contact Information:
+     - **Company Name:** RSV Infotech Pte Ltd
+     - **Address:** 10 Ubi Crescent, #07-52, Ubi Tech Park Lobby C, Singapore 408564
+     - **Email:** sales@myrsv.com | support@myrsv.com
+     - **Phone:** +65 9681 2234 | +65 8500 9203
+   - Contact Form (Name, Email, Message) with validation
+   - Google Maps embed of your office location
+   - Floating bot-style animated icon near the form (optional AI Assistant figure)
+
+6. **Footer**
+   - Quick Links: Home, About Us, Services, Contact
+   - Social Media Icons (LinkedIn, Facebook)
+   - Copyright © 2025 RSV Infotech Pte Ltd. All Rights Reserved.
+
+---
+
+🚀 **Additional Features:**
+- Smooth page transitions (Framer Motion page wrapper)
+- Loading animation on page load (animated neural network or simple Lottie animation)
+- Mobile-friendly, fully responsive design
+- Dark Mode with toggle switch
+- Optional ChatBot pop-up for lead generation (AI-style)
+
+---
+
+✨ **AI Visual Style Inspiration:**
+- Glowing lines, circuit patterns
+- Floating particles or grid overlays
+- Subtle hologram effects on buttons or section headers
+- 3D tilt card effects on hover
+
+---
+
+🛠️ **Tech Stack:**
+- ReactJS
+- TailwindCSS
+- Framer Motion
+- Shadcn UI
+- Heroicons / Lucide Icons
+- Optionally Lottie Animations for loader / background visuals
+
+---
+
+Please generate all the above structure with proper folder architecture:
+- `/components`
+- `/pages` (Home, About, Services, Contact)
+- `/assets` (images, animations)
+- `tailwind.config.js`
+- Fully functional routing
+
+Make the website look premium, eye-catching, and engaging.
+
