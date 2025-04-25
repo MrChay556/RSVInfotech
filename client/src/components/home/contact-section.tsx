@@ -178,99 +178,189 @@ const ContactSection = () => {
                   
                   {/* Message Exchange Animation - Circular Lifecycle */}
                   <div className="message-exchange-container">
-                    <div className="circle-container">
-                      {/* User at the bottom */}
+                    <motion.div 
+                      className="circle-container"
+                      animate={{ 
+                        boxShadow: [
+                          "0 0 30px rgba(0, 245, 255, 0.2), inset 0 0 20px rgba(160, 32, 240, 0.1)",
+                          "0 0 40px rgba(0, 245, 255, 0.4), inset 0 0 30px rgba(160, 32, 240, 0.2)",
+                          "0 0 30px rgba(0, 245, 255, 0.2), inset 0 0 20px rgba(160, 32, 240, 0.1)"
+                        ]
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      {/* Circular track */}
+                      <div className="circle-track"></div>
+                      
+                      {/* User at bottom */}
                       <div className="user-icon">
                         <div className="icon-circle">
                           <User className="user-avatar" size={24} />
                         </div>
                       </div>
                       
-                      {/* Company at the top */}
+                      {/* Company at top */}
                       <div className="company-icon">
                         <div className="icon-circle">
                           <Building2 className="company-avatar" size={24} />
                         </div>
                       </div>
                       
-                      {/* Circular Paths */}
-                      <div className="circle-path">
-                        {/* Right side path (user to company) */}
-                        <motion.div className="right-path"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                        >
-                          <motion.div
-                            className="arrow-point right-arrow"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: [0, 1, 0] }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              repeatDelay: 1,
-                              delay: 0.5
-                            }}
-                          />
-                        </motion.div>
-                        
-                        {/* Left side path (company to user) */}
-                        <motion.div className="left-path"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                        >
-                          <motion.div
-                            className="arrow-point left-arrow"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: [0, 1, 0] }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              repeatDelay: 1,
-                              delay: 1.7
-                            }}
-                          />
-                        </motion.div>
-                      </div>
-                      
-                      {/* Messages */}
+                      {/* Outgoing message - User to Company */}
                       <motion.div
                         className="message outgoing-message"
-                        initial={{ opacity: 0 }}
-                        animate={{
-                          opacity: [0, 1, 0],
-                          top: [100, 50, 0], 
-                          right: [0, 50, 100]
+                        initial={{ 
+                          bottom: 20, 
+                          left: "calc(50% - 18px)",
+                          opacity: 0 
                         }}
+                        animate={[
+                          { 
+                            bottom: 20, 
+                            left: "calc(50% - 18px)",
+                            opacity: 0,
+                            scale: 0.8
+                          },
+                          { 
+                            bottom: 55, 
+                            left: "calc(50% - 18px + 40px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            bottom: 90, 
+                            left: "calc(50% - 18px + 70px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            bottom: 130, 
+                            left: "calc(50% - 18px + 40px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            bottom: 170, 
+                            left: "calc(50% - 18px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            bottom: 190, 
+                            left: "calc(50% - 18px)", 
+                            opacity: 0,
+                            scale: 0.8
+                          }
+                        ]}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
                           repeatDelay: 1,
                           ease: "easeInOut"
                         }}
-                        style={{ left: 'auto', bottom: 'auto', transform: 'none' }}
                       >
                         <Mail className="mail-icon" size={16} />
                       </motion.div>
                       
+                      {/* Incoming message - Company to User */}
                       <motion.div
                         className="message incoming-message"
-                        initial={{ opacity: 0 }}
-                        animate={{
-                          opacity: [0, 1, 0],
-                          bottom: [100, 50, 0],
-                          left: [0, 50, 100]
+                        initial={{ 
+                          top: 20, 
+                          left: "calc(50% - 18px)",
+                          opacity: 0 
                         }}
+                        animate={[
+                          { 
+                            top: 20, 
+                            left: "calc(50% - 18px)",
+                            opacity: 0,
+                            scale: 0.8
+                          },
+                          { 
+                            top: 55, 
+                            left: "calc(50% - 18px - 40px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            top: 90, 
+                            left: "calc(50% - 18px - 70px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            top: 130, 
+                            left: "calc(50% - 18px - 40px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            top: 170, 
+                            left: "calc(50% - 18px)", 
+                            opacity: 1,
+                            scale: 1
+                          },
+                          { 
+                            top: 190, 
+                            left: "calc(50% - 18px)", 
+                            opacity: 0,
+                            scale: 0.8
+                          }
+                        ]}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
                           repeatDelay: 1,
-                          ease: "easeInOut",
-                          delay: 1.5
+                          delay: 1.5,
+                          ease: "easeInOut"
                         }}
                       >
                         <MessageSquare className="response-icon" size={16} />
                       </motion.div>
-                    </div>
+                      
+                      {/* Animated arrow trails */}
+                      <svg className="arrows" width="220" height="220" viewBox="0 0 220 220" style={{ position: 'absolute', top: 0, left: 0 }}>
+                        {/* Right side path - User to Company */}
+                        <motion.path
+                          d="M 110,200 Q 180,110 110,20"
+                          fill="none"
+                          stroke="rgba(0, 245, 255, 0.6)"
+                          strokeWidth="2"
+                          strokeDasharray="6,6"
+                          initial={{ pathLength: 0, opacity: 0.3 }}
+                          animate={{ pathLength: 1, opacity: [0.3, 0.8, 0.3] }}
+                          transition={{ 
+                            duration: 3, 
+                            repeat: Infinity,
+                            repeatDelay: 1,
+                            ease: "easeInOut" 
+                          }}
+                        />
+                        
+                        {/* Left side path - Company to User */}
+                        <motion.path
+                          d="M 110,20 Q 40,110 110,200"
+                          fill="none"
+                          stroke="rgba(160, 32, 240, 0.6)"
+                          strokeWidth="2" 
+                          strokeDasharray="6,6"
+                          initial={{ pathLength: 0, opacity: 0.3 }}
+                          animate={{ pathLength: 1, opacity: [0.3, 0.8, 0.3] }}
+                          transition={{ 
+                            duration: 3, 
+                            repeat: Infinity, 
+                            repeatDelay: 1,
+                            delay: 1.5,
+                            ease: "easeInOut" 
+                          }}
+                        />
+                      </svg>
+                    </motion.div>
                     
                   </div>
                 </motion.div>
