@@ -19,7 +19,7 @@ const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
         await tsParticles.load("service-particles", {
           fps_limit: 60,
           interactivity: {
-            detect_on: "canvas",
+            detect_on: "window",
             events: {
               onclick: {
                 enable: true,
@@ -115,7 +115,7 @@ const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
         {/* Particles Background - using unique ID for service pages */}
         <div 
           id="service-particles" 
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-50 pointer-events-none"
           style={{ position: "absolute", width: "100%", height: "100%" }}
         />
         

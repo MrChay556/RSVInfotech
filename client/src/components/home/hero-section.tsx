@@ -15,7 +15,7 @@ const HeroSection = () => {
         await tsParticles.load("hero-particles", {
           fps_limit: 60,
           interactivity: {
-            detect_on: "canvas",
+            detect_on: "window",
             events: {
               onclick: {
                 enable: true,
@@ -108,7 +108,7 @@ const HeroSection = () => {
     <section id="home" className="relative min-h-screen flex items-center py-16 overflow-hidden">
       <div 
         id="hero-particles" 
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-50 pointer-events-none"
         style={{ position: "absolute", width: "100%", height: "100%" }}
       />
       
