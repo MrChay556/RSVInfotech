@@ -111,7 +111,9 @@ const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
   return (
     <div className="flex flex-col">
       {/* Page Header - with interactive modern design */}
-      <div className="bg-gradient-to-r from-primary/90 to-secondary/90 py-20 relative overflow-hidden min-h-[50vh] flex items-center">
+      <div className="relative overflow-hidden min-h-[50vh] flex items-center py-20" style={{ 
+        backgroundColor: 'hsl(237, 41%, 10%)', /* #0B0C28 - same as home page */
+      }}>
         {/* Particles Background - using unique ID for service pages */}
         <div 
           id="service-particles" 
