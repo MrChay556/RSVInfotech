@@ -1,7 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { tsParticles } from 'tsparticles-engine';
-import { loadSlim } from 'tsparticles-slim';
+import { useParticles } from '@/hooks/use-particles';
 
 interface ServiceLayoutProps {
   children: ReactNode;
@@ -10,66 +9,16 @@ interface ServiceLayoutProps {
 }
 
 const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
-  // Initialize particles for the service pages header with mouse interaction
-  useEffect(() => {
-    const initServiceParticles = async () => {
-      try {
-        await loadSlim(tsParticles);
-        
-        await tsParticles.load("service-header-particles", {
-          particles: {
-            number: { value: 80, density: { enable: true, value_area: 800 } },
-            color: { value: ["#00F5FF", "#A020F0"] },
-            shape: { type: "circle" },
-            opacity: { value: 0.3, random: true },
-            size: { value: 3, random: true },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: "none",
-              random: true,
-              straight: false,
-              out_mode: "out"
-            },
-            links: {
-              enable: true,
-              distance: 150,
-              color: "#00F5FF",
-              opacity: 0.2,
-              width: 1
-            }
-          },
-          interactivity: {
-            detect_on: "canvas",
-            events: {
-              onhover: { enable: true, mode: "grab" },
-              onclick: { enable: true, mode: "push" },
-              resize: true
-            },
-            modes: {
-              grab: { distance: 140, links: { opacity: 0.5 } },
-              push: { particles_nb: 4 }
-            }
-          },
-          retina_detect: true
-        });
-      } catch (error) {
-        console.error("Failed to load service header particles:", error);
-      }
-    };
-    
-    initServiceParticles();
-    
-    // No cleanup to avoid issues with different tsParticles versions
-  }, []);
+  // Use the same particles hook as the home page for consistent interactions
+  const { particlesInit, particlesLoaded } = useParticles();
 
   return (
     <div className="flex flex-col">
       {/* Page Header - with particles for mouse interaction */}
       <div className="bg-gradient-to-r from-primary/90 to-secondary/90 py-20 relative overflow-hidden min-h-[50vh] flex items-center">
-        {/* Particles Background */}
+        {/* Particles Background - using the same ID as home page for consistent effects */}
         <div 
-          id="service-header-particles" 
+          id="hero-particles" 
           className="absolute inset-0 z-0"
           style={{ position: "absolute", width: "100%", height: "100%" }}
         />
