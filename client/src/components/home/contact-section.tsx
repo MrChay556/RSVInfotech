@@ -176,99 +176,99 @@ const ContactSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
                   
-                  {/* Message Exchange Animation */}
+                  {/* Message Exchange Animation - Circular Lifecycle */}
                   <div className="message-exchange-container">
-                    {/* User icon */}
-                    <div className="user-icon">
-                      <div className="icon-circle">
-                        <User className="user-avatar" size={24} />
+                    <div className="circle-container">
+                      {/* User at the bottom */}
+                      <div className="user-icon">
+                        <div className="icon-circle">
+                          <User className="user-avatar" size={24} />
+                        </div>
                       </div>
-                    </div>
-                    
-                    {/* Company icon */}
-                    <div className="company-icon">
-                      <div className="icon-circle">
-                        <Building2 className="company-avatar" size={24} />
+                      
+                      {/* Company at the top */}
+                      <div className="company-icon">
+                        <div className="icon-circle">
+                          <Building2 className="company-avatar" size={24} />
+                        </div>
                       </div>
-                    </div>
-                    
-                    {/* Message exchange arrows animation */}
-                    <div className="arrows-container">
-                      {/* User message to company */}
-                      <motion.div 
-                        className="send-container"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                      >
-                        <motion.div
-                          className="message outgoing-message"
-                          initial={{ x: "0%", scale: 0.8, opacity: 0 }}
-                          animate={{ 
-                            x: "900%", 
-                            scale: [0.8, 1, 0.8],
-                            opacity: [0, 1, 0]
-                          }}
-                          transition={{ 
-                            duration: 2,
-                            repeat: Infinity,
-                            repeatDelay: 1,
-                            ease: "easeInOut",
-                          }}
+                      
+                      {/* Circular Paths */}
+                      <div className="circle-path">
+                        {/* Right side path (user to company) */}
+                        <motion.div className="right-path"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
                         >
-                          <Mail className="mail-icon" size={16} />
+                          <motion.div
+                            className="arrow-point right-arrow"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: [0, 1, 0] }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatDelay: 1,
+                              delay: 0.5
+                            }}
+                          />
                         </motion.div>
                         
-                        <motion.div 
-                          className="arrow send-arrow"
-                          initial={{ width: "0%" }}
-                          animate={{ width: "100%" }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            repeatDelay: 2,
-                            ease: "easeInOut",
-                            delay: 0.2
-                          }}
-                        />
+                        {/* Left side path (company to user) */}
+                        <motion.div className="left-path"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                        >
+                          <motion.div
+                            className="arrow-point left-arrow"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: [0, 1, 0] }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatDelay: 1,
+                              delay: 1.7
+                            }}
+                          />
+                        </motion.div>
+                      </div>
+                      
+                      {/* Messages */}
+                      <motion.div
+                        className="message outgoing-message"
+                        initial={{ opacity: 0 }}
+                        animate={{
+                          opacity: [0, 1, 0],
+                          top: [100, 50, 0], 
+                          right: [0, 50, 100]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatDelay: 1,
+                          ease: "easeInOut"
+                        }}
+                        style={{ left: 'auto', bottom: 'auto', transform: 'none' }}
+                      >
+                        <Mail className="mail-icon" size={16} />
                       </motion.div>
                       
-                      {/* Company response to user - delayed */}
-                      <motion.div 
-                        className="reply-container"
+                      <motion.div
+                        className="message incoming-message"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        animate={{
+                          opacity: [0, 1, 0],
+                          bottom: [100, 50, 0],
+                          left: [0, 50, 100]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatDelay: 1,
+                          ease: "easeInOut",
+                          delay: 1.5
+                        }}
                       >
-                        <motion.div 
-                          className="arrow reply-arrow"
-                          initial={{ width: "0%" }}
-                          animate={{ width: "100%" }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            repeatDelay: 2,
-                            delay: 1.5,
-                            ease: "easeInOut"
-                          }}
-                        />
-                        
-                        <motion.div
-                          className="message incoming-message"
-                          initial={{ x: "0%", scale: 0.8, opacity: 0 }}
-                          animate={{ 
-                            x: "-900%", 
-                            scale: [0.8, 1, 0.8],
-                            opacity: [0, 1, 0]
-                          }}
-                          transition={{ 
-                            duration: 2,
-                            repeat: Infinity,
-                            repeatDelay: 1,
-                            delay: 1.7,
-                            ease: "easeInOut"
-                          }}
-                        >
-                          <MessageSquare className="response-icon" size={16} />
-                        </motion.div>
+                        <MessageSquare className="response-icon" size={16} />
                       </motion.div>
                     </div>
                     
