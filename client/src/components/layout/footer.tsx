@@ -33,7 +33,7 @@ const Footer = () => {
                 <span className="font-orbitron font-bold text-2xl tracking-wider">RSV</span>
                 <span className="text-primary text-2xl mx-0.5">.</span>
                 <span className="font-orbitron font-bold text-2xl tracking-wider">INFOTECH</span>
-                <span className="font-orbitron font-bold text-2xl tracking-wider ml-2">PTE. LTD.</span>
+                <span className="ml-2 font-orbitron font-bold text-2xl tracking-wider">PTE. LTD.</span>
               </div>
             </Link>
             <p className="text-foreground/70 mb-6">
