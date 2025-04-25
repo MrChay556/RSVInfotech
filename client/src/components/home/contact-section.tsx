@@ -7,7 +7,18 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { MapPin, Mail, Phone, Clock, Copy, Check } from "lucide-react";
+import { 
+  MapPin, 
+  Mail, 
+  Phone, 
+  Clock, 
+  Copy, 
+  Check, 
+  User, 
+  Building2, 
+  MessageSquare, 
+  CheckCircle2 
+} from "lucide-react";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -165,106 +176,119 @@ const ContactSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
                   
-                  {/* Mail Rocket Animation */}
-                  <div className="mail-animation-container">
-                    {/* Flying stars/particles in background */}
-                    <div className="stars">
-                      {Array.from({ length: 20 }).map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className="star"
-                          initial={{ 
-                            x: `${Math.random() * 100}%`, 
-                            y: `${Math.random() * 100}%`,
-                            opacity: Math.random() * 0.7
-                          }}
-                          animate={{ 
-                            opacity: [0.2, 0.8, 0.2],
-                            scale: [0.8, 1.2, 0.8],
-                          }}
-                          transition={{ 
-                            duration: 2 + Math.random() * 3,
-                            repeat: Infinity,
-                            repeatType: "reverse",
-                            delay: Math.random() * 2,
-                          }}
-                        />
-                      ))}
+                  {/* Message Exchange Animation */}
+                  <div className="message-exchange-container">
+                    {/* User icon */}
+                    <div className="user-icon">
+                      <div className="icon-circle">
+                        <User className="user-avatar" size={24} />
+                      </div>
                     </div>
                     
-                    {/* Mail/Envelope Rocket */}
-                    <motion.div 
-                      className="mail-rocket"
-                      initial={{ x: "-50%", y: "100%" }}
-                      animate={{ 
-                        x: ["-50%", "-40%", "-60%", "-50%"],
-                        y: ["100%", "0%", "-100%"],
-                        rotate: [0, -5, 5, 0]
-                      }}
-                      transition={{ 
-                        duration: 4,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        times: [0, 0.4, 0.7, 1],
-                        ease: "easeInOut" 
-                      }}
-                    >
-                      <div className="envelope-body">
-                        <div className="envelope-top" />
-                        <div className="envelope-flap" />
-                        <div className="envelope-window" />
+                    {/* Company icon */}
+                    <div className="company-icon">
+                      <div className="icon-circle">
+                        <Building2 className="company-avatar" size={24} />
                       </div>
-                      
-                      {/* Rocket Flames */}
-                      <motion.div 
-                        className="rocket-flames"
-                        animate={{ 
-                          scaleY: [0.7, 1.3, 0.7],
-                          opacity: [0.7, 1, 0.7] 
-                        }}
-                        transition={{ 
-                          duration: 0.5,
-                          repeat: Infinity,
-                          repeatType: "reverse"
-                        }}
-                      />
-                    </motion.div>
+                    </div>
                     
-                    {/* Trailing dots/particles */}
-                    <div className="mail-trails">
-                      {Array.from({ length: 12 }).map((_, i) => (
+                    {/* Message exchange arrows animation */}
+                    <div className="arrows-container">
+                      {/* User message to company */}
+                      <motion.div 
+                        className="send-container"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
                         <motion.div
-                          key={i}
-                          className="mail-trail"
-                          initial={{ 
-                            x: "50%", 
-                            y: "40%",
-                            opacity: 0
-                          }}
+                          className="message outgoing-message"
+                          initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
-                            x: [
-                              "50%", 
-                              `${50 + Math.random() * 30 - 15}%`, 
-                              `${50 + Math.random() * 50 - 25}%`
-                            ],
-                            y: ["40%", "70%", "120%"],
-                            opacity: [0, 0.8, 0],
-                            scale: [0.3, 1, 0.3]
+                            x: "130%", 
+                            y: "-130%", 
+                            scale: [0.8, 1, 1],
+                            opacity: [0, 1, 0]
                           }}
                           transition={{ 
                             duration: 2,
                             repeat: Infinity,
-                            repeatType: "loop",
-                            delay: i * 0.2,
-                            ease: "easeOut"
+                            repeatDelay: 1,
+                            ease: "easeInOut",
+                          }}
+                        >
+                          <Mail className="mail-icon" size={16} />
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="arrow send-arrow"
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{
+                            duration: 0.8,
+                            repeat: Infinity,
+                            repeatDelay: 2.2,
+                            ease: "easeInOut"
                           }}
                         />
-                      ))}
+                      </motion.div>
+                      
+                      {/* Company response to user - delayed */}
+                      <motion.div 
+                        className="reply-container"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        <motion.div 
+                          className="arrow reply-arrow"
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{
+                            duration: 0.8,
+                            repeat: Infinity,
+                            repeatDelay: 2.2,
+                            delay: 1.5,
+                            ease: "easeInOut"
+                          }}
+                        />
+                        
+                        <motion.div
+                          className="message incoming-message"
+                          initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
+                          animate={{ 
+                            x: "-130%", 
+                            y: "130%", 
+                            scale: [0.8, 1, 1],
+                            opacity: [0, 1, 0]
+                          }}
+                          transition={{ 
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatDelay: 1,
+                            delay: 1.5,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <MessageSquare className="response-icon" size={16} />
+                        </motion.div>
+                      </motion.div>
                     </div>
+                    
+                    <motion.div 
+                      className="quick-response-banner"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ 
+                        delay: 0.5,
+                        duration: 0.5
+                      }}
+                    >
+                      <CheckCircle2 className="check-icon" size={16} />
+                      <span>We respond immediately</span>
+                    </motion.div>
                   </div>
                   
-                  <div className="absolute bottom-4 left-0 right-0 text-center text-xs opacity-50">
-                    Send us a message to get started
+                  <div className="absolute bottom-4 left-0 right-0 text-center text-sm opacity-80 font-medium">
+                    When you inquire, we reply immediately
                   </div>
                 </motion.div>
               </div>
