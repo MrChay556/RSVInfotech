@@ -61,8 +61,13 @@ const HeroSection = () => {
                       <div className="flex items-center">
                         <span className="font-orbitron font-bold text-4xl tracking-wider">RSV</span>
                         <span className="text-primary text-4xl mx-1">.</span>
-                        <span className="font-orbitron font-bold text-4xl tracking-wider">INFOTECH</span>
-                        <span className="bg-primary/90 text-sm font-bold text-white ml-2 px-1 rounded">AI</span>
+                        <span className="font-orbitron font-bold text-4xl tracking-wider relative">
+                          INFOTEC
+                          <span className="font-orbitron font-bold tracking-wider relative">
+                            H
+                            <span className="absolute -top-3 -right-2 bg-primary/90 text-[10px] font-bold text-white px-0.5 rounded">AI</span>
+                          </span>
+                        </span>
                       </div>
                     </div>
                     <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-0.5 bg-foreground/20"></div>

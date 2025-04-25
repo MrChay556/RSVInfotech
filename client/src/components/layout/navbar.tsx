@@ -52,8 +52,13 @@ const Navbar = () => {
                 <div className="flex items-center">
                   <span className="font-orbitron font-bold text-2xl tracking-wider">RSV</span>
                   <span className="text-primary text-2xl mx-0.5">.</span>
-                  <span className="font-orbitron font-bold text-2xl tracking-wider">INFOTECH</span>
-                  <span className="bg-primary/90 text-[10px] font-bold text-white ml-1.5 px-0.5 rounded">AI</span>
+                  <span className="font-orbitron font-bold text-2xl tracking-wider relative">
+                    INFOTEC
+                    <span className="font-orbitron font-bold tracking-wider relative">
+                      H
+                      <span className="absolute -top-2 -right-2 bg-primary/90 text-[8px] font-bold text-white px-0.5 rounded">AI</span>
+                    </span>
+                  </span>
                 </div>
               </div>
             </Link>
