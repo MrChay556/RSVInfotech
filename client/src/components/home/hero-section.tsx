@@ -65,7 +65,7 @@ const HeroSection = () => {
               color: "#00F5FF",
               distance: 150,
               enable: true,
-              opacity: 0.2,
+              opacity: 0.1, // Reduced opacity for lines
               width: 1
             },
             move: {
@@ -73,25 +73,25 @@ const HeroSection = () => {
               enable: true,
               outMode: "out",
               random: false,
-              speed: 0.6,
+              speed: 0.4, // Slower movement
               straight: false
             },
             number: {
               density: {
                 enable: true,
-                value_area: 800
+                value_area: 1200 // Increased area = fewer particles
               },
-              value: 80
+              value: 40 // Reduced number of particles
             },
             opacity: {
-              value: 0.5
+              value: 0.3 // Reduced particle opacity
             },
             shape: {
               type: "circle"
             },
             size: {
               random: true,
-              value: 3
+              value: 2 // Smaller particles
             }
           },
           detectRetina: true
@@ -108,7 +108,7 @@ const HeroSection = () => {
     <section id="home" className="relative min-h-screen flex items-center py-16 overflow-hidden">
       <div 
         id="hero-particles" 
-        className="absolute inset-0 z-50 pointer-events-none"
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{ position: "absolute", width: "100%", height: "100%" }}
       />
       
