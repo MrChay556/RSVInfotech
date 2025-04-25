@@ -73,6 +73,8 @@ const ContactSection = () => {
           message: ""
         });
         
+        // Hide the form and show the animation again
+        setShowContactForm(false);
         setIsSubmitting(false);
       }, 1500);
     } catch (error) {
@@ -154,6 +156,83 @@ const ContactSection = () => {
                     Send Message
                   </Button>
                 </div>
+                
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="h-[300px] relative overflow-hidden rounded-lg border border-white/10"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
+                  
+                  {/* AI Brain Network Animation */}
+                  <div className="ai-network-animation">
+                    <svg className="ai-connections" width="100%" height="100%">
+                      <line className="ai-connection" x1="30%" y1="25%" x2="50%" y2="30%" />
+                      <line className="ai-connection" x1="40%" y1="60%" x2="50%" y2="30%" />
+                      <line className="ai-connection" x1="65%" y1="40%" x2="50%" y2="30%" />
+                      <line className="ai-connection" x1="30%" y1="25%" x2="40%" y2="60%" />
+                      <line className="ai-connection" x1="65%" y1="40%" x2="70%" y2="70%" />
+                      <line className="ai-connection" x1="40%" y1="60%" x2="55%" y2="65%" />
+                      <line className="ai-connection" x1="30%" y1="50%" x2="55%" y2="65%" />
+                      <line className="ai-connection" x1="30%" y1="50%" x2="30%" y2="25%" />
+                      <line className="ai-connection" x1="70%" y1="20%" x2="65%" y2="40%" />
+                    </svg>
+                    
+                    <div className="ai-nodes">
+                      {Array.from({ length: 8 }).map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="ai-node"
+                          initial={{ scale: 0 }}
+                          animate={{ 
+                            scale: [0, 1, 0.8, 1],
+                            x: [0, Math.random() * 20 - 10],
+                            y: [0, Math.random() * 20 - 10],
+                          }}
+                          transition={{ 
+                            duration: 3,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            delay: i * 0.2,
+                            ease: "easeInOut"
+                          }}
+                        />
+                      ))}
+                    </div>
+                    
+                    <motion.div
+                      className="ai-pulse"
+                      initial={{ scale: 0.8, opacity: 0.3 }}
+                      animate={{ 
+                        scale: [0.8, 1.2, 0.8],
+                        opacity: [0.3, 0.7, 0.3]
+                      }}
+                      transition={{ 
+                        duration: 3,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
+                    />
+                    
+                    <motion.div
+                      className="ai-center"
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: 360 }}
+                      transition={{ 
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    >
+                      <div className="ai-core" />
+                    </motion.div>
+                  </div>
+                  
+                  <div className="absolute bottom-4 left-0 right-0 text-center text-xs opacity-50">
+                    AI-Powered Solutions
+                  </div>
+                </motion.div>
               </div>
             ) : (
               <AnimatePresence>
