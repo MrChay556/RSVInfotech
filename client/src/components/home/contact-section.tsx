@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
 import SectionHeading from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { MapPin, Mail, Phone, Clock, Copy, Check } from "lucide-react";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -20,6 +20,12 @@ const ContactSection = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+  
+  // Email addresses to protect
+  const salesEmail = "sales@myrsv.com";
+  const supportEmail = "support@myrsv.com";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -82,12 +88,58 @@ const ContactSection = () => {
     }
   };
 
+  // Copy email address to clipboard
+  const handleCopyEmail = (email: string) => {
+    navigator.clipboard.writeText(email).then(
+      () => {
+        setCopiedEmail(email);
+        toast({
+          title: "Email Copied!",
+          description: `${email} copied to clipboard`,
+        });
+        
+        // Reset the "copied" state after 2 seconds
+        setTimeout(() => {
+          setCopiedEmail(null);
+        }, 2000);
+      },
+      () => {
+        toast({
+          title: "Failed to copy",
+          description: "Please try again",
+          variant: "destructive"
+        });
+      }
+    );
+  };
+  
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
+    }
+  };
+  
+  const formAnimation = {
+    hidden: { opacity: 0, height: 0, scale: 0.9 },
+    visible: { 
+      opacity: 1, 
+      height: "auto", 
+      scale: 1,
+      transition: { 
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      height: 0, 
+      scale: 0.9,
+      transition: { duration: 0.3 }
     }
   };
 
@@ -112,67 +164,97 @@ const ContactSection = () => {
           >
             <h3 className="font-orbitron text-2xl font-semibold mb-6 text-primary">Send Us a Message</h3>
             
-            <form onSubmit={handleSubmit}>
-              <div className="mb-6">
-                <Label htmlFor="name" className="block text-foreground/80 mb-2 font-medium">Your Name</Label>
-                <Input 
-                  type="text" 
-                  id="name" 
-                  name="name"
-                  placeholder="John Doe" 
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors"
-                  value={formData.name}
-                  onChange={handleChange}
-                />
+            {!showContactForm ? (
+              <div className="flex justify-center">
+                <Button 
+                  onClick={() => setShowContactForm(true)}
+                  className="px-8 py-7 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 glow-button"
+                >
+                  Show Contact Form
+                </Button>
               </div>
-              
-              <div className="mb-6">
-                <Label htmlFor="email" className="block text-foreground/80 mb-2 font-medium">Email Address</Label>
-                <Input 
-                  type="email" 
-                  id="email" 
-                  name="email"
-                  placeholder="your@email.com" 
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              
-              <div className="mb-6">
-                <Label htmlFor="phone" className="block text-foreground/80 mb-2 font-medium">Phone Number (Optional)</Label>
-                <Input 
-                  type="tel" 
-                  id="phone" 
-                  name="phone"
-                  placeholder="+65 9123 4567" 
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors"
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              
-              <div className="mb-6">
-                <Label htmlFor="message" className="block text-foreground/80 mb-2 font-medium">Your Message</Label>
-                <Textarea 
-                  id="message" 
-                  name="message"
-                  rows={5} 
-                  placeholder="Tell us about your project or inquiry..." 
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors resize-none"
-                  value={formData.message}
-                  onChange={handleChange}
-                />
-              </div>
-              
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full px-6 py-7 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 glow-button"
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
+            ) : (
+              <AnimatePresence>
+                <motion.form
+                  onSubmit={handleSubmit}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={formAnimation}
+                >
+                  <div className="mb-6">
+                    <Label htmlFor="name" className="block text-foreground/80 mb-2 font-medium">Your Name</Label>
+                    <Input 
+                      type="text" 
+                      id="name" 
+                      name="name"
+                      placeholder="John Doe" 
+                      className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  
+                  <div className="mb-6">
+                    <Label htmlFor="email" className="block text-foreground/80 mb-2 font-medium">Email Address</Label>
+                    <Input 
+                      type="email" 
+                      id="email" 
+                      name="email"
+                      placeholder="your@email.com" 
+                      className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  
+                  <div className="mb-6">
+                    <Label htmlFor="phone" className="block text-foreground/80 mb-2 font-medium">Phone Number (Optional)</Label>
+                    <Input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone"
+                      placeholder="+65 9123 4567" 
+                      className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  
+                  <div className="mb-6">
+                    <Label htmlFor="message" className="block text-foreground/80 mb-2 font-medium">Your Message</Label>
+                    <Textarea 
+                      id="message" 
+                      name="message"
+                      rows={5} 
+                      placeholder="Tell us about your project or inquiry..." 
+                      className="w-full px-4 py-3 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors resize-none"
+                      value={formData.message}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  
+                  <div className="flex space-x-4">
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="flex-1 px-6 py-7 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 glow-button"
+                    >
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                    </Button>
+                    
+                    <Button
+                      type="button"
+                      onClick={() => setShowContactForm(false)}
+                      variant="outline"
+                      className="px-6 py-7 rounded-lg border border-white/20 hover:bg-card/50"
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </motion.form>
+              </AnimatePresence>
+            )}
           </motion.div>
           
           <div>
@@ -202,7 +284,35 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Email</h4>
-                    <p className="text-foreground/70">sales@myrsv.com | support@myrsv.com</p>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex items-center space-x-1 border-white/10 hover:bg-primary/10"
+                        onClick={() => handleCopyEmail(salesEmail)}
+                      >
+                        <span>Sales Inquiry</span>
+                        {copiedEmail === salesEmail ? (
+                          <Check className="h-4 w-4 text-green-500" />
+                        ) : (
+                          <Copy className="h-4 w-4 opacity-70" />
+                        )}
+                      </Button>
+                      
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex items-center space-x-1 border-white/10 hover:bg-primary/10"
+                        onClick={() => handleCopyEmail(supportEmail)}
+                      >
+                        <span>Technical Support</span>
+                        {copiedEmail === supportEmail ? (
+                          <Check className="h-4 w-4 text-green-500" />
+                        ) : (
+                          <Copy className="h-4 w-4 opacity-70" />
+                        )}
+                      </Button>
+                    </div>
                   </div>
                 </div>
                 

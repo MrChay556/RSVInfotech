@@ -162,7 +162,7 @@ const Navbar = () => {
                           transition={{ duration: 0.2 }}
                           className="absolute z-50 mt-2 w-48 rounded-md shadow-lg py-1 bg-card border border-white/10 backdrop-blur-md"
                         >
-                          {link.dropdownItems?.map((item) => (
+                          {link.dropdownItems?.map((item: NavDropdownItem) => (
                             <button
                               key={item.name}
                               onClick={() => {
@@ -257,7 +257,7 @@ const Navbar = () => {
                           transition={{ duration: 0.2 }}
                           className="pl-3 border-l border-white/10 ml-3 space-y-1"
                         >
-                          {link.dropdownItems?.map((item) => (
+                          {link.dropdownItems?.map((item: NavDropdownItem) => (
                             <button
                               key={item.name}
                               onClick={() => {
