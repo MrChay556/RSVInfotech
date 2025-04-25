@@ -6,6 +6,9 @@ import CTASection from '../../components/services/cta-section';
 import { Shield, Lock, FileWarning, CheckCircle, AlertTriangle, Eye, Code } from 'lucide-react';
 import { tsParticles } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
+import securityShieldImg from '@/assets/images/security-shield.jpg';
+import cyberSecurityImg from '@/assets/images/cybersecurity.jpg';
+import dataSecurityImg from '@/assets/images/data-security.jpg';
 
 const ITSecurityPage = () => {
   const controls = useAnimation();
@@ -58,9 +61,7 @@ const ITSecurityPage = () => {
     
     initParticles();
     
-    return () => {
-      tsParticles.destroy();
-    };
+    // No cleanup for now to avoid version compatibility issues
   }, []);
 
   // Animate stats when they come into view
@@ -124,22 +125,42 @@ const ITSecurityPage = () => {
       {/* Particles Background */}
       <div id="tsparticles-security" className="absolute inset-0 -z-10 opacity-70"></div>
       
-      <div className="max-w-4xl mx-auto mb-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl font-orbitron font-bold mb-6">Enterprise Security Solutions</h2>
-          <div className="prose prose-lg dark:prose-invert">
-            <p>
-              In today's digital landscape, cybersecurity is not optional. Our IT security services provide comprehensive protection for your business against evolving cyber threats, ensuring your data, systems, and reputation remain secure.
-            </p>
-            <p>
-              With RSV Infotech as your security partner, you gain access to advanced threat protection, proactive monitoring, and rapid incident response to safeguard your business assets.
-            </p>
-          </div>
-        </motion.div>
+      <div className="max-w-5xl mx-auto mb-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl font-orbitron font-bold mb-6">Enterprise Security Solutions</h2>
+            <div className="prose prose-lg dark:prose-invert">
+              <p>
+                In today's digital landscape, cybersecurity is not optional. Our IT security services provide comprehensive protection for your business against evolving cyber threats, ensuring your data, systems, and reputation remain secure.
+              </p>
+              <p>
+                With RSV Infotech as your security partner, you gain access to advanced threat protection, proactive monitoring, and rapid incident response to safeguard your business assets.
+              </p>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative h-80 rounded-xl overflow-hidden shadow-xl"
+          >
+            <img 
+              src={cyberSecurityImg} 
+              alt="Advanced cybersecurity protection" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-xl font-semibold">Advanced Threat Protection</h3>
+              <p className="text-white/80 text-sm">Enterprise-grade security for modern businesses</p>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Statistics Section */}
@@ -255,6 +276,68 @@ const ITSecurityPage = () => {
             </li>
           </ul>
         </motion.div>
+      </div>
+
+      {/* Additional Image Section */}
+      <div className="py-16 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="relative rounded-xl overflow-hidden h-64 shadow-lg"
+          >
+            <img 
+              src={dataSecurityImg} 
+              alt="Data security" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-lg font-semibold">Data Encryption</h3>
+              <p className="text-white/80 text-sm">Protecting your sensitive information</p>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative rounded-xl overflow-hidden h-64 shadow-lg"
+          >
+            <img 
+              src={securityShieldImg} 
+              alt="Security shield" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-lg font-semibold">Active Protection</h3>
+              <p className="text-white/80 text-sm">Real-time monitoring and defense</p>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="relative rounded-xl overflow-hidden h-64 shadow-lg md:col-span-2 lg:col-span-1"
+          >
+            <img 
+              src={cyberSecurityImg} 
+              alt="Cyber security" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-lg font-semibold">Compliance & Auditing</h3>
+              <p className="text-white/80 text-sm">Meeting industry regulations and standards</p>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Common Threats Section */}
