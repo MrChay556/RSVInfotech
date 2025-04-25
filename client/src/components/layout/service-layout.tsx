@@ -1,5 +1,7 @@
 import { ReactNode, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { tsParticles } from "tsparticles-engine";
+import { loadSlim } from "tsparticles-slim";
 
 interface ServiceLayoutProps {
   children: ReactNode;
@@ -8,65 +10,102 @@ interface ServiceLayoutProps {
 }
 
 const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
+  // Initialize particles for service pages with the same config as home page for consistency
   useEffect(() => {
-    // Load particles via direct script
-    if (typeof window !== 'undefined') {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js';
-      script.async = true;
-      
-      script.onload = () => {
-        if ((window as any).tsParticles) {
-          (window as any).tsParticles.load('service-particles', {
-            particles: {
-              number: { value: 100, density: { enable: true, value_area: 800 } },
-              color: { value: ["#00F5FF", "#A020F0"] },
-              shape: { type: "circle" },
-              opacity: { value: 0.5, random: true },
-              size: { value: 3, random: true },
-              move: {
+    const initParticles = async () => {
+      try {
+        await loadSlim(tsParticles);
+        
+        await tsParticles.load("service-particles", {
+          fps_limit: 60,
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onclick: {
                 enable: true,
-                speed: 2,
-                direction: "none",
-                random: true,
-                straight: false,
-                out_mode: "out",
-                bounce: false
+                mode: "push"
               },
-              line_linked: {
+              onhover: {
                 enable: true,
-                distance: 150,
-                color: "#00F5FF",
-                opacity: 0.3,
-                width: 1
-              }
-            },
-            interactivity: {
-              detect_on: "canvas",
-              events: {
-                onhover: { enable: true, mode: "grab" },
-                onclick: { enable: true, mode: "push" },
-                resize: true
+                mode: "grab",
+                parallax: {
+                  enable: false,
+                  force: 60,
+                  smooth: 10
+                }
               },
-              modes: {
-                grab: { distance: 140, line_linked: { opacity: 0.5 } },
-                push: { particles_nb: 4 }
-              }
+              resize: true
             },
-            retina_detect: true
-          });
-        }
-      };
-      
-      document.body.appendChild(script);
-      
-      return () => {
-        // Clean up
-        if (document.body.contains(script)) {
-          document.body.removeChild(script);
-        }
-      };
-    }
+            modes: {
+              bubble: {
+                distance: 400,
+                duration: 2,
+                opacity: 0.8,
+                size: 40
+              },
+              grab: {
+                distance: 200,
+                line_linked: {
+                  opacity: 0.4
+                }
+              },
+              push: {
+                particles_nb: 4
+              },
+              remove: {
+                particles_nb: 2
+              },
+              repulse: {
+                distance: 200,
+                duration: 0.4
+              }
+            }
+          },
+          particles: {
+            color: {
+              value: ["#00F5FF", "#A020F0"]
+            },
+            line_linked: {
+              color: "#00F5FF",
+              distance: 150,
+              enable: true,
+              opacity: 0.2,
+              width: 1
+            },
+            move: {
+              direction: "none",
+              enable: true,
+              outMode: "out",
+              random: false,
+              speed: 0.6,
+              straight: false
+            },
+            number: {
+              density: {
+                enable: true,
+                value_area: 800
+              },
+              value: 80
+            },
+            opacity: {
+              value: 0.5
+            },
+            shape: {
+              type: "circle"
+            },
+            size: {
+              random: true,
+              value: 3
+            }
+          },
+          detectRetina: true
+        });
+      } catch (error) {
+        console.error("Failed to load particles:", error);
+      }
+    };
+    
+    initParticles();
   }, []);
 
   return (
