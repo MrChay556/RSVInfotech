@@ -165,72 +165,106 @@ const ContactSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
                   
-                  {/* AI Brain Network Animation */}
-                  <div className="ai-network-animation">
-                    <svg className="ai-connections" width="100%" height="100%">
-                      <line className="ai-connection" x1="30%" y1="25%" x2="50%" y2="30%" />
-                      <line className="ai-connection" x1="40%" y1="60%" x2="50%" y2="30%" />
-                      <line className="ai-connection" x1="65%" y1="40%" x2="50%" y2="30%" />
-                      <line className="ai-connection" x1="30%" y1="25%" x2="40%" y2="60%" />
-                      <line className="ai-connection" x1="65%" y1="40%" x2="70%" y2="70%" />
-                      <line className="ai-connection" x1="40%" y1="60%" x2="55%" y2="65%" />
-                      <line className="ai-connection" x1="30%" y1="50%" x2="55%" y2="65%" />
-                      <line className="ai-connection" x1="30%" y1="50%" x2="30%" y2="25%" />
-                      <line className="ai-connection" x1="70%" y1="20%" x2="65%" y2="40%" />
-                    </svg>
-                    
-                    <div className="ai-nodes">
-                      {Array.from({ length: 8 }).map((_, i) => (
+                  {/* Mail Rocket Animation */}
+                  <div className="mail-animation-container">
+                    {/* Flying stars/particles in background */}
+                    <div className="stars">
+                      {Array.from({ length: 20 }).map((_, i) => (
                         <motion.div
                           key={i}
-                          className="ai-node"
-                          initial={{ scale: 0 }}
+                          className="star"
+                          initial={{ 
+                            x: `${Math.random() * 100}%`, 
+                            y: `${Math.random() * 100}%`,
+                            opacity: Math.random() * 0.7
+                          }}
                           animate={{ 
-                            scale: [0, 1, 0.8, 1],
-                            x: [0, Math.random() * 20 - 10],
-                            y: [0, Math.random() * 20 - 10],
+                            opacity: [0.2, 0.8, 0.2],
+                            scale: [0.8, 1.2, 0.8],
                           }}
                           transition={{ 
-                            duration: 3,
+                            duration: 2 + Math.random() * 3,
                             repeat: Infinity,
                             repeatType: "reverse",
-                            delay: i * 0.2,
-                            ease: "easeInOut"
+                            delay: Math.random() * 2,
                           }}
                         />
                       ))}
                     </div>
                     
-                    <motion.div
-                      className="ai-pulse"
-                      initial={{ scale: 0.8, opacity: 0.3 }}
+                    {/* Mail/Envelope Rocket */}
+                    <motion.div 
+                      className="mail-rocket"
+                      initial={{ x: "-50%", y: "100%" }}
                       animate={{ 
-                        scale: [0.8, 1.2, 0.8],
-                        opacity: [0.3, 0.7, 0.3]
+                        x: ["-50%", "-40%", "-60%", "-50%"],
+                        y: ["100%", "0%", "-100%"],
+                        rotate: [0, -5, 5, 0]
                       }}
                       transition={{ 
-                        duration: 3,
+                        duration: 4,
                         repeat: Infinity,
-                        repeatType: "reverse"
-                      }}
-                    />
-                    
-                    <motion.div
-                      className="ai-center"
-                      initial={{ rotate: 0 }}
-                      animate={{ rotate: 360 }}
-                      transition={{ 
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear"
+                        repeatType: "reverse",
+                        times: [0, 0.4, 0.7, 1],
+                        ease: "easeInOut" 
                       }}
                     >
-                      <div className="ai-core" />
+                      <div className="envelope-body">
+                        <div className="envelope-top" />
+                        <div className="envelope-flap" />
+                        <div className="envelope-window" />
+                      </div>
+                      
+                      {/* Rocket Flames */}
+                      <motion.div 
+                        className="rocket-flames"
+                        animate={{ 
+                          scaleY: [0.7, 1.3, 0.7],
+                          opacity: [0.7, 1, 0.7] 
+                        }}
+                        transition={{ 
+                          duration: 0.5,
+                          repeat: Infinity,
+                          repeatType: "reverse"
+                        }}
+                      />
                     </motion.div>
+                    
+                    {/* Trailing dots/particles */}
+                    <div className="mail-trails">
+                      {Array.from({ length: 12 }).map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="mail-trail"
+                          initial={{ 
+                            x: "50%", 
+                            y: "40%",
+                            opacity: 0
+                          }}
+                          animate={{ 
+                            x: [
+                              "50%", 
+                              `${50 + Math.random() * 30 - 15}%`, 
+                              `${50 + Math.random() * 50 - 25}%`
+                            ],
+                            y: ["40%", "70%", "120%"],
+                            opacity: [0, 0.8, 0],
+                            scale: [0.3, 1, 0.3]
+                          }}
+                          transition={{ 
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            delay: i * 0.2,
+                            ease: "easeOut"
+                          }}
+                        />
+                      ))}
+                    </div>
                   </div>
                   
                   <div className="absolute bottom-4 left-0 right-0 text-center text-xs opacity-50">
-                    AI-Powered Solutions
+                    Send us a message to get started
                   </div>
                 </motion.div>
               </div>
