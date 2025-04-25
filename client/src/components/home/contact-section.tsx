@@ -130,6 +130,7 @@ const ContactSection = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div 
+            id="contact-form"
             className="bg-card/70 backdrop-blur-sm p-8 rounded-xl border border-white/10"
             variants={fadeIn}
             initial="hidden"
@@ -266,13 +267,17 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Email</h4>
                     <div className="flex flex-wrap gap-2 mt-1">
-                      <a 
-                        href={`mailto:${inquiryEmail}`} 
+                      <button 
+                        onClick={() => {
+                          setShowContactForm(true);
+                          // Smoothly scroll to the form
+                          document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                         className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors text-sm font-medium"
                       >
                         <Mail className="h-4 w-4 mr-2 text-primary" />
                         <span>Inquiry</span>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
