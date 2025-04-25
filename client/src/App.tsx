@@ -11,6 +11,11 @@ import Chatbot from "@/components/ui/chatbot";
 import { motion, AnimatePresence } from "framer-motion";
 import SoftwareDevelopment from "@/pages/services/software-development";
 import AISolutions from "@/pages/services/ai-solutions";
+import ITServices from "@/pages/services/it-services";
+import ITNetworking from "@/pages/services/it-networking";
+import ITSecurity from "@/pages/services/it-security";
+import CloudTechnologies from "@/pages/services/cloud-technologies";
+import VoIPServices from "@/pages/services/voip";
 
 function Router() {
   return (
@@ -19,6 +24,11 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/services/software-development" component={SoftwareDevelopment} />
         <Route path="/services/ai-solutions" component={AISolutions} />
+        <Route path="/services/it-services" component={ITServices} />
+        <Route path="/services/it-networking" component={ITNetworking} />
+        <Route path="/services/it-security" component={ITSecurity} />
+        <Route path="/services/cloud-technologies" component={CloudTechnologies} />
+        <Route path="/services/voip" component={VoIPServices} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>
