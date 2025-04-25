@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import ServiceLayout from '../../components/layout/service-layout';
 import ServiceFeatures, { FeatureItem } from '../../components/services/service-features';
 import TestimonialSection, { Testimonial } from '../../components/services/testimonial-section';
@@ -14,6 +15,9 @@ import {
   ShieldCheck, 
   GitBranch 
 } from 'lucide-react';
+import softwareDevImg from '@/assets/images/software-development.jpg';
+import techAbstractImg from '@/assets/images/tech-abstract.jpg';
+import networkImg from '@/assets/images/network.jpg';
 
 const softwareFeatures: FeatureItem[] = [
   {
@@ -80,30 +84,106 @@ const testimonials: Testimonial[] = [
 ];
 
 const SoftwareDevelopmentPage = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  
+  const controls = useAnimation();
+  
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
   return (
     <ServiceLayout 
       title="Software Development" 
       subtitle="Custom solutions designed to solve your unique business challenges"
     >
-      <div className="max-w-4xl mx-auto mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl font-orbitron font-bold mb-6">Accelerate Your Digital Transformation</h2>
-          <div className="prose prose-lg dark:prose-invert">
-            <p>
-              In today's rapidly evolving digital landscape, bespoke software solutions can give your business the competitive edge it needs. At RSV Infotech, we combine technical expertise with industry knowledge to deliver software that not only meets your current needs but is also built to scale with your business.
-            </p>
-            <p>
-              Our expert development team follows industry best practices and employs the latest technologies to create robust, scalable, and secure software solutions. From requirement analysis and system architecture to development, testing, and deployment—we handle the entire software development lifecycle with precision and care.
-            </p>
-          </div>
-        </motion.div>
+      <div className="max-w-5xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl font-orbitron font-bold mb-6">Accelerate Your Digital Transformation</h2>
+            <div className="prose prose-lg dark:prose-invert">
+              <p>
+                In today's rapidly evolving digital landscape, bespoke software solutions can give your business the competitive edge it needs. At RSV Infotech, we combine technical expertise with industry knowledge to deliver software that not only meets your current needs but is also built to scale with your business.
+              </p>
+              <p>
+                Our expert development team follows industry best practices and employs the latest technologies to create robust, scalable, and secure software solutions. From requirement analysis and system architecture to development, testing, and deployment—we handle the entire software development lifecycle with precision and care.
+              </p>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative h-80 rounded-xl overflow-hidden shadow-xl"
+          >
+            <img 
+              src={softwareDevImg} 
+              alt="Software development" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-xl font-semibold">Modern Development Practices</h3>
+              <p className="text-white/80 text-sm">Using cutting-edge technologies and methodologies</p>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      <div className="mb-20">
+      {/* Image Grid Section */}
+      <div className="py-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="relative rounded-xl overflow-hidden h-64 shadow-lg"
+          >
+            <img 
+              src={techAbstractImg} 
+              alt="Technology abstract" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-lg font-semibold">Full-Stack Excellence</h3>
+              <p className="text-white/80 text-sm">Frontend, backend, and everything in between</p>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative rounded-xl overflow-hidden h-64 shadow-lg"
+          >
+            <img 
+              src={networkImg} 
+              alt="Network infrastructure" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-lg font-semibold">Cloud-Native Solutions</h3>
+              <p className="text-white/80 text-sm">Scalable, reliable, and cost-effective</p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="mb-20" ref={ref}>
         <h2 className="text-3xl font-orbitron font-bold mb-6 text-center">Our Software Development Services</h2>
         <div className="w-24 h-1 bg-primary/50 mx-auto mb-12"></div>
         <ServiceFeatures features={softwareFeatures} />
