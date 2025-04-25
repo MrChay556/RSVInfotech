@@ -1,6 +1,4 @@
 import { ReactNode } from 'react';
-import Navbar from './navbar';
-import Footer from './footer';
 import { motion } from 'framer-motion';
 
 interface ServiceLayoutProps {
@@ -11,9 +9,7 @@ interface ServiceLayoutProps {
 
 const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      
+    <div className="flex flex-col">
       {/* Page Header */}
       <div className="bg-gradient-to-r from-primary/90 to-secondary/90 py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -33,13 +29,11 @@ const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
       </div>
       
       {/* Main Content */}
-      <main className="flex-grow py-16 bg-muted">
+      <main className="py-16 bg-muted">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {children}
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };

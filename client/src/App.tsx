@@ -40,7 +40,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="relative min-h-screen flex flex-col">
+          <Navbar />
           <Router />
+          <Footer />
           <Chatbot />
         </div>
         <Toaster />
