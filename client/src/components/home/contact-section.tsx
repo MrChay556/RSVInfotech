@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useRef } from "react";
 import SectionHeading from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
@@ -110,23 +110,40 @@ const ContactSection = () => {
   };
   
   const formAnimation = {
-    hidden: { opacity: 0, height: 0, scale: 0.9 },
+    hidden: { 
+      opacity: 0, 
+      height: 0, 
+      scale: 0.7, 
+      y: 50,
+      filter: "blur(15px)"
+    },
     visible: { 
       opacity: 1, 
       height: "auto", 
       scale: 1,
+      y: 0,
+      filter: "blur(0px)",
       transition: { 
-        duration: 0.5,
+        duration: 0.7,
         type: "spring",
         stiffness: 100,
-        damping: 15
+        damping: 15,
+        opacity: { duration: 0.5 },
+        filter: { duration: 0.8 },
+        scale: { duration: 0.8 }
       }
     },
     exit: { 
       opacity: 0, 
       height: 0, 
-      scale: 0.9,
-      transition: { duration: 0.3 }
+      scale: 0.7,
+      y: 50,
+      filter: "blur(15px)",
+      transition: { 
+        duration: 0.5,
+        filter: { duration: 0.5 },
+        opacity: { duration: 0.3 } 
+      }
     }
   };
 
@@ -218,44 +235,16 @@ const ContactSection = () => {
                           left: "calc(50% - 18px)",
                           opacity: 0 
                         }}
-                        animate={[
-                          { 
-                            bottom: 20, 
-                            left: "calc(50% - 18px)",
-                            opacity: 0,
-                            scale: 0.8
-                          },
-                          { 
-                            bottom: 55, 
-                            left: "calc(50% - 18px + 40px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            bottom: 90, 
-                            left: "calc(50% - 18px + 70px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            bottom: 130, 
-                            left: "calc(50% - 18px + 40px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            bottom: 170, 
-                            left: "calc(50% - 18px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            bottom: 190, 
-                            left: "calc(50% - 18px)", 
-                            opacity: 0,
-                            scale: 0.8
-                          }
-                        ]}
+                        style={{
+                          position: "absolute"
+                        }}
+                        animate={{
+                          bottom: 200,
+                          left: "calc(50% - 18px)",
+                          opacity: [0, 1, 0],
+                          x: [0, 60, 0], 
+                          y: [-10, -90, -180]
+                        }}
                         transition={{
                           duration: 3,
                           repeat: Infinity,
@@ -274,44 +263,16 @@ const ContactSection = () => {
                           left: "calc(50% - 18px)",
                           opacity: 0 
                         }}
-                        animate={[
-                          { 
-                            top: 20, 
-                            left: "calc(50% - 18px)",
-                            opacity: 0,
-                            scale: 0.8
-                          },
-                          { 
-                            top: 55, 
-                            left: "calc(50% - 18px - 40px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            top: 90, 
-                            left: "calc(50% - 18px - 70px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            top: 130, 
-                            left: "calc(50% - 18px - 40px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            top: 170, 
-                            left: "calc(50% - 18px)", 
-                            opacity: 1,
-                            scale: 1
-                          },
-                          { 
-                            top: 190, 
-                            left: "calc(50% - 18px)", 
-                            opacity: 0,
-                            scale: 0.8
-                          }
-                        ]}
+                        style={{
+                          position: "absolute"
+                        }}
+                        animate={{
+                          top: 200,
+                          left: "calc(50% - 18px)",
+                          opacity: [0, 1, 0],
+                          x: [0, -60, 0],
+                          y: [-10, -90, -180]
+                        }}
                         transition={{
                           duration: 3,
                           repeat: Infinity,
@@ -373,7 +334,27 @@ const ContactSection = () => {
                   animate="visible"
                   exit="exit"
                   variants={formAnimation}
+                  className="relative"
+                  style={{
+                    overflow: "hidden"
+                  }}
                 >
+                  <motion.div 
+                    className="absolute inset-0 z-0 pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    animate={{ 
+                      opacity: [0, 0.5, 0],
+                      boxShadow: [
+                        "0 0 0px rgba(0, 245, 255, 0)",
+                        "0 0 30px rgba(0, 245, 255, 0.6)",
+                        "0 0 0px rgba(0, 245, 255, 0)"
+                      ]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      ease: "easeOut"
+                    }}
+                  ></motion.div>
                   <div className="mb-6">
                     <Label htmlFor="name" className="block text-foreground/80 mb-2 font-medium">Your Name</Label>
                     <Input 
