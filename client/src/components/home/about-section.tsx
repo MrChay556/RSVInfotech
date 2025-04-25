@@ -95,11 +95,33 @@ const AboutSection = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <div className="absolute -top-10 -right-10 w-48 h-48 bg-secondary/20 rounded-full blur-3xl"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&auto=format&fit=crop&q=80" 
-              alt="RSV Infotech Office" 
-              className="rounded-2xl shadow-2xl relative shadow-secondary/20 w-full max-w-lg mx-auto" 
-            />
+            <div className="rounded-2xl shadow-2xl relative shadow-secondary/20 w-full max-w-lg mx-auto overflow-hidden">
+              <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 p-6 flex flex-col justify-center">
+                <div className="flex items-center mb-6">
+                  <div className="w-16 h-16 rounded-lg bg-background/70 flex items-center justify-center mr-4">
+                    <span className="font-orbitron font-bold gradient-text text-2xl">RSV</span>
+                  </div>
+                  <div>
+                    <h3 className="font-orbitron text-xl font-bold mb-1">RSV Infotech</h3>
+                    <p className="text-sm text-foreground/70">Singapore • Since 2003</p>
+                  </div>
+                </div>
+                <div className="bg-background/70 backdrop-blur-sm rounded-xl p-4 mb-4">
+                  <div className="flex items-center mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                      <span className="font-bold text-primary">20</span>
+                    </div>
+                    <p className="text-sm">Years of Industry Experience</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center mr-3">
+                      <span className="font-bold text-secondary">100+</span>
+                    </div>
+                    <p className="text-sm">Satisfied Business Clients</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             {/* Timeline */}
             <div className="absolute bottom-4 left-4 right-4 bg-background/80 backdrop-blur-md p-4 rounded-xl">

@@ -53,11 +53,37 @@ const HeroSection = () => {
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
             <div className="relative animate-float">
-              <img 
-                src="https://images.unsplash.com/photo-1673187876321-3deece129afb?w=600&auto=format&fit=crop&q=80" 
-                alt="AI Technology Visualization" 
-                className="rounded-2xl shadow-2xl shadow-secondary/20 w-full max-w-lg mx-auto" 
-              />
+              <div className="rounded-2xl shadow-2xl shadow-secondary/20 w-full max-w-lg mx-auto overflow-hidden bg-background/50 backdrop-blur-sm p-8">
+                <div className="relative z-10">
+                  <div className="grid grid-cols-3 gap-4 mb-4">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <div 
+                        key={i} 
+                        className="aspect-square rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center"
+                      >
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center animate-pulse-glow">
+                          <span className="font-orbitron font-bold text-xs gradient-text">AI</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="h-24 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center mb-4">
+                    <div className="text-center">
+                      <h3 className="font-orbitron text-lg font-bold gradient-text mb-1">Smart AI Technology</h3>
+                      <p className="text-sm text-foreground/70">Next-generation solutions</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="h-16 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                      <span className="text-center text-sm text-foreground/70">Advanced<br/>Analytics</span>
+                    </div>
+                    <div className="h-16 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                      <span className="text-center text-sm text-foreground/70">Business<br/>Intelligence</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 to-secondary/5 z-0"></div>
+              </div>
               <div className="absolute -bottom-5 -right-5 w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
