@@ -54,19 +54,22 @@ const HeroSection = () => {
             <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
             <div className="relative animate-float">
               <div className="rounded-2xl shadow-2xl shadow-secondary/20 w-full max-w-lg mx-auto overflow-hidden bg-background/50 backdrop-blur-sm p-8">
-                {/* RSV Infotech Logo - Similar to BrutallyHired */}
-                <div className="flex justify-center mb-6">
+                {/* RSV Infotech Logo - Matching the provided image */}
+                <div className="flex justify-center mb-10">
                   <div className="relative">
-                    <div className="flex items-center">
-                      <div className="bg-gradient-to-r from-primary to-secondary p-3 rounded-xl mr-4">
-                        <span className="font-orbitron font-bold text-white text-2xl tracking-wider">RSV</span>
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center">
+                        <span className="font-orbitron font-bold text-4xl tracking-wider">RSV</span>
+                        <span className="text-primary text-4xl mx-1">.</span>
+                        <span className="font-orbitron font-bold text-4xl tracking-wider">INFOTECH</span>
                       </div>
-                      <div className="flex flex-col">
-                        <span className="font-orbitron font-bold text-xl">INFOTECH</span>
-                        <span className="text-xs text-foreground/70">IT SOLUTIONS & SERVICES</span>
+                      <div className="flex items-end mt-1">
+                        <span className="text-sm text-foreground/80">PTE.</span>
+                        <span className="text-sm text-foreground/80 ml-1">LTD.</span>
+                        <span className="bg-primary/90 text-xs font-bold text-white ml-2 px-1 rounded">AI</span>
                       </div>
                     </div>
-                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-primary to-secondary"></div>
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-0.5 bg-foreground/20"></div>
                   </div>
                 </div>
                 

@@ -28,11 +28,19 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
-            <Link href="/" className="flex items-center space-x-2 mb-6">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="font-orbitron font-bold text-background">R</span>
+            <Link href="/" className="flex items-center mb-6">
+              <div className="flex items-center">
+                <div className="flex items-center">
+                  <span className="font-orbitron font-bold text-2xl tracking-wider">RSV</span>
+                  <span className="text-primary text-2xl mx-0.5">.</span>
+                  <span className="font-orbitron font-bold text-2xl tracking-wider">INFOTECH</span>
+                </div>
+                <div className="flex items-end ml-1">
+                  <span className="text-xs text-foreground/80 ml-1">PTE.</span>
+                  <span className="text-xs text-foreground/80 ml-0.5">LTD.</span>
+                  <span className="bg-primary/90 text-[10px] font-bold text-white ml-1 px-0.5 rounded">AI</span>
+                </div>
               </div>
-              <span className="font-orbitron font-bold text-xl tracking-wider text-foreground">RSV INFOTECH</span>
             </Link>
             <p className="text-foreground/70 mb-6">
               Empowering businesses with cutting-edge IT solutions and AI innovation since 2003.
