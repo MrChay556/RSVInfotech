@@ -189,7 +189,7 @@ const SoftwareDevelopmentPage = () => {
         <ServiceFeatures features={softwareFeatures} />
       </div>
 
-      <div className="bg-card border border-white/10 rounded-xl p-8 mb-16">
+      <div className="bg-white/50 border border-gray-200 rounded-xl p-8 mb-16 shadow-sm">
         <h2 className="text-2xl font-orbitron font-bold mb-6">Our Development Process</h2>
         <ol className="space-y-6">
           <motion.li 
