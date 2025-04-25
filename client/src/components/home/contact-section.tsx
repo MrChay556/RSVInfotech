@@ -239,16 +239,11 @@ const ContactSection = () => {
                           strokeWidth="2"
                           strokeDasharray="6,6"
                           initial={{ pathLength: 0, opacity: 0.3 }}
-                          animate={[
-                            { pathLength: 0, opacity: 0.2 },
-                            { pathLength: 1, opacity: 0.8 },
-                            { pathLength: 1, opacity: 0.8 },
-                            { pathLength: 0, opacity: 0.2 }
-                          ]}
+                          animate={{ pathLength: 1, opacity: [0.3, 0.8, 0.3] }}
                           transition={{ 
-                            duration: 6,
-                            times: [0, 0.4, 0.6, 1],
+                            duration: 3, 
                             repeat: Infinity,
+                            repeatDelay: 1,
                             ease: "easeInOut" 
                           }}
                         />
@@ -261,17 +256,12 @@ const ContactSection = () => {
                           strokeWidth="2" 
                           strokeDasharray="6,6"
                           initial={{ pathLength: 0, opacity: 0.3 }}
-                          animate={[
-                            { pathLength: 0, opacity: 0.2 },
-                            { pathLength: 1, opacity: 0.8 },
-                            { pathLength: 1, opacity: 0.8 },
-                            { pathLength: 0, opacity: 0.2 }
-                          ]}
+                          animate={{ pathLength: 1, opacity: [0.3, 0.8, 0.3] }}
                           transition={{ 
-                            duration: 6,
-                            times: [0, 0.4, 0.6, 1], 
-                            repeat: Infinity,
-                            delay: 3,
+                            duration: 3, 
+                            repeat: Infinity, 
+                            repeatDelay: 1,
+                            delay: 1.5,
                             ease: "easeInOut" 
                           }}
                         />
