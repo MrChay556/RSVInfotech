@@ -76,12 +76,21 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <button 
-                    onClick={() => handleClick(link.href)}
-                    className="text-foreground/70 hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </button>
+                  {link.href.startsWith('#') ? (
+                    <button 
+                      onClick={() => scrollToElement(link.href.substring(1))}
+                      className="text-foreground/70 hover:text-primary transition-colors cursor-pointer"
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-foreground/70 hover:text-primary transition-colors cursor-pointer"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -92,12 +101,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
-                  <button 
-                    onClick={() => handleClick(link.href)}
-                    className="text-foreground/70 hover:text-primary transition-colors"
+                  <Link
+                    href={link.href}
+                    className="text-foreground/70 hover:text-primary transition-colors cursor-pointer"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

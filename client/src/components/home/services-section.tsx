@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/section-heading";
 import { services } from "@/data/services";
+import { Link } from "wouter";
 
 const ServicesSection = () => {
   const containerVariants = {
@@ -58,12 +59,12 @@ const ServicesSection = () => {
                     <li key={index}>{feature}</li>
                   ))}
                 </ul>
-                <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="text-primary hover:underline flex items-center">
+                <Link href={service.link || '#'} className="text-primary hover:underline flex items-center cursor-pointer">
                   Learn more
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </Link>
               </div>
             </motion.div>
           ))}

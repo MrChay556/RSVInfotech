@@ -18,7 +18,8 @@ export const services = [
       "24/7 monitoring and support",
       "Proactive system maintenance",
       "Help desk and technical assistance"
-    ]
+    ],
+    link: "/services/it-services"
   },
   {
     title: "Cloud Computing & Hosting",
@@ -28,7 +29,8 @@ export const services = [
       "Public, private, and hybrid cloud",
       "IaaS, PaaS, and SaaS solutions",
       "Cloud migration and optimization"
-    ]
+    ],
+    link: "/services/cloud-technologies"
   },
   {
     title: "VoIP / IP Telephony",
@@ -38,7 +40,8 @@ export const services = [
       "Business phone systems",
       "Video conferencing solutions",
       "Unified communications"
-    ]
+    ],
+    link: "/services/voip"
   },
   {
     title: "IT Security",
@@ -48,7 +51,8 @@ export const services = [
       "Network security solutions",
       "Endpoint protection",
       "Security audits and compliance"
-    ]
+    ],
+    link: "/services/it-security"
   },
   {
     title: "Data Backup & Recovery",
@@ -58,7 +62,8 @@ export const services = [
       "Automated backup systems",
       "Business continuity planning",
       "Disaster recovery solutions"
-    ]
+    ],
+    link: "/services/it-services"
   },
   {
     title: "Custom Software Development",
@@ -68,7 +73,8 @@ export const services = [
       "Web and mobile applications",
       "Windows desktop software",
       "SaaS platform development"
-    ]
+    ],
+    link: "/services/software-development"
   },
   {
     title: "AI-powered Business Automation",
@@ -78,7 +84,8 @@ export const services = [
       "Workflow automation",
       "Machine learning integration",
       "Predictive analytics solutions"
-    ]
+    ],
+    link: "/services/ai-solutions"
   },
   {
     title: "Firewall & VPN Solutions",
@@ -88,6 +95,7 @@ export const services = [
       "Next-gen firewall implementation",
       "Secure remote access solutions",
       "Network traffic monitoring"
-    ]
+    ],
+    link: "/services/it-networking"
   }
 ];

@@ -2,13 +2,32 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ServiceLayout from '../../components/layout/service-layout';
 import CTASection from '../../components/services/cta-section';
-import { Network, Wifi, Globe } from 'lucide-react';
+import ServiceFeatures, { FeatureItem } from '../../components/services/service-features';
+import { Network, Wifi, Settings, ArrowLeftRight } from 'lucide-react';
 
 const ITNetworkingPage = () => {
+  const features: FeatureItem[] = [
+    {
+      icon: <Network className="h-6 w-6" />,
+      title: "Network Infrastructure",
+      description: "Design and implementation of reliable network infrastructure tailored to your business requirements and future growth plans."
+    },
+    {
+      icon: <Wifi className="h-6 w-6" />,
+      title: "Wireless Solutions",
+      description: "Secure, high-performance wireless networks with complete coverage for your facility and support for modern devices."
+    },
+    {
+      icon: <ArrowLeftRight className="h-6 w-6" />,
+      title: "Firewall & VPN",
+      description: "Advanced security solutions to protect your network perimeter and enable secure remote access for your team."
+    }
+  ];
+
   return (
     <ServiceLayout 
       title="IT Networking" 
-      subtitle="Build reliable, scalable and secure network infrastructure for your business"
+      subtitle="Robust connectivity solutions for your business"
     >
       <div className="max-w-4xl mx-auto mb-16">
         <motion.div
@@ -19,67 +38,49 @@ const ITNetworkingPage = () => {
           <h2 className="text-3xl font-orbitron font-bold mb-6">Enterprise Networking Solutions</h2>
           <div className="prose prose-lg dark:prose-invert">
             <p>
-              Our networking services provide end-to-end solutions for designing, implementing, and managing robust network infrastructure. We ensure your network is fast, reliable, and secure while supporting your business operations.
+              Our IT networking services provide the foundation for your business technology, ensuring reliable connectivity, optimal performance, and robust security for your data and applications.
             </p>
             <p>
-              With RSV Infotech as your networking partner, you gain access to expert network engineers, proactive monitoring, and strategic guidance to help your business maintain optimal connectivity.
+              With RSV Infotech as your networking partner, you gain access to certified network engineers with extensive experience designing, implementing, and managing enterprise-grade networks for businesses of all sizes.
             </p>
           </div>
         </motion.div>
       </div>
 
-      {/* Key service features */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-card rounded-xl p-6 border border-white/10 hover:border-primary/30 transition-colors shadow-lg"
-        >
-          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary">
-            <Network className="w-6 h-6" />
-          </div>
-          <h3 className="text-xl font-orbitron font-semibold mb-3">Network Design & Implementation</h3>
-          <p className="text-foreground/70">Custom network design and implementation services tailored to your business needs, ensuring optimal performance and scalability.</p>
-        </motion.div>
+      <ServiceFeatures features={features} />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-card rounded-xl p-6 border border-white/10 hover:border-primary/30 transition-colors shadow-lg"
-        >
-          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary">
-            <Wifi className="w-6 h-6" />
-          </div>
-          <h3 className="text-xl font-orbitron font-semibold mb-3">Wireless Networking</h3>
-          <p className="text-foreground/70">Enterprise-grade wireless solutions providing reliable, secure connectivity across your entire organization.</p>
-        </motion.div>
-
+      <div className="max-w-4xl mx-auto my-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="bg-card rounded-xl p-6 border border-white/10 hover:border-primary/30 transition-colors shadow-lg"
         >
-          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary">
-            <Globe className="w-6 h-6" />
+          <h2 className="text-2xl font-orbitron font-bold mb-6">Our Networking Expertise</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-card rounded-xl p-6 border border-white/10 shadow-lg">
+              <h3 className="text-xl font-orbitron font-semibold mb-3">Network Assessment</h3>
+              <p className="text-foreground/70">Comprehensive evaluation of your existing network infrastructure to identify performance bottlenecks, security vulnerabilities, and opportunities for improvement.</p>
+            </div>
+            <div className="bg-card rounded-xl p-6 border border-white/10 shadow-lg">
+              <h3 className="text-xl font-orbitron font-semibold mb-3">Network Monitoring</h3>
+              <p className="text-foreground/70">Proactive 24/7 monitoring of your network infrastructure to ensure optimal performance, early problem detection, and rapid resolution of issues.</p>
+            </div>
+            <div className="bg-card rounded-xl p-6 border border-white/10 shadow-lg">
+              <h3 className="text-xl font-orbitron font-semibold mb-3">SD-WAN Implementation</h3>
+              <p className="text-foreground/70">Modern software-defined wide area network solutions that improve performance, enhance security, and reduce costs for multi-location businesses.</p>
+            </div>
+            <div className="bg-card rounded-xl p-6 border border-white/10 shadow-lg">
+              <h3 className="text-xl font-orbitron font-semibold mb-3">Network Security</h3>
+              <p className="text-foreground/70">Advanced security measures including next-generation firewalls, intrusion detection, and prevention systems to protect your network from threats.</p>
+            </div>
           </div>
-          <h3 className="text-xl font-orbitron font-semibold mb-3">WAN Solutions</h3>
-          <p className="text-foreground/70">Wide Area Network solutions that connect your multiple offices or locations with reliable, secure links.</p>
         </motion.div>
       </div>
 
-      <div className="text-center mb-16">
-        <p className="text-xl text-foreground/70 italic">
-          More detailed information about our IT networking services will be available soon.
-        </p>
-      </div>
-
       <CTASection 
-        title="Need Network Solutions for Your Business?" 
-        description="Contact our networking experts today to discuss how we can help build and maintain a robust networking infrastructure for your organization."
-        buttonText="Contact Our Network Team"
+        title="Ready to Upgrade Your Network?" 
+        description="Contact our networking experts today to discuss how we can help improve your connectivity, security, and performance."
+        buttonText="Get Network Assessment"
       />
     </ServiceLayout>
   );
