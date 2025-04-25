@@ -21,11 +21,8 @@ const ContactSection = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
-  
-  // Email addresses to protect
-  const salesEmail = "sales@myrsv.com";
-  const supportEmail = "support@myrsv.com";
+  // Email address for inquiries
+  const inquiryEmail = "connectme@myrsv.com";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -88,30 +85,7 @@ const ContactSection = () => {
     }
   };
 
-  // Copy email address to clipboard
-  const handleCopyEmail = (email: string) => {
-    navigator.clipboard.writeText(email).then(
-      () => {
-        setCopiedEmail(email);
-        toast({
-          title: "Email Copied!",
-          description: `${email} copied to clipboard`,
-        });
-        
-        // Reset the "copied" state after 2 seconds
-        setTimeout(() => {
-          setCopiedEmail(null);
-        }, 2000);
-      },
-      () => {
-        toast({
-          title: "Failed to copy",
-          description: "Please try again",
-          variant: "destructive"
-        });
-      }
-    );
-  };
+
   
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -165,13 +139,20 @@ const ContactSection = () => {
             <h3 className="font-orbitron text-2xl font-semibold mb-6 text-primary">Send Us a Message</h3>
             
             {!showContactForm ? (
-              <div className="flex justify-center">
-                <Button 
-                  onClick={() => setShowContactForm(true)}
-                  className="px-8 py-7 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 glow-button"
-                >
-                  Show Contact Form
-                </Button>
+              <div className="space-y-6">
+                <div className="p-5 rounded-lg border border-white/10 bg-primary/5">
+                  <h4 className="font-medium text-lg mb-2">Need assistance with your IT infrastructure?</h4>
+                  <p className="text-foreground/70 mb-4">
+                    Fill out our contact form and our team will respond to your inquiry promptly. 
+                    We provide tailored IT solutions to help your business thrive in the digital landscape.
+                  </p>
+                  <Button 
+                    onClick={() => setShowContactForm(true)}
+                    className="w-full px-8 py-6 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 glow-button"
+                  >
+                    Send Message
+                  </Button>
+                </div>
               </div>
             ) : (
               <AnimatePresence>
@@ -285,33 +266,13 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Email</h4>
                     <div className="flex flex-wrap gap-2 mt-1">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center space-x-1 border-white/10 hover:bg-primary/10"
-                        onClick={() => handleCopyEmail(salesEmail)}
+                      <a 
+                        href={`mailto:${inquiryEmail}`} 
+                        className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors text-sm font-medium"
                       >
-                        <span>Sales Inquiry</span>
-                        {copiedEmail === salesEmail ? (
-                          <Check className="h-4 w-4 text-green-500" />
-                        ) : (
-                          <Copy className="h-4 w-4 opacity-70" />
-                        )}
-                      </Button>
-                      
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center space-x-1 border-white/10 hover:bg-primary/10"
-                        onClick={() => handleCopyEmail(supportEmail)}
-                      >
-                        <span>Technical Support</span>
-                        {copiedEmail === supportEmail ? (
-                          <Check className="h-4 w-4 text-green-500" />
-                        ) : (
-                          <Copy className="h-4 w-4 opacity-70" />
-                        )}
-                      </Button>
+                        <Mail className="h-4 w-4 mr-2 text-primary" />
+                        <span>Inquiry</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -322,7 +283,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Phone</h4>
-                    <p className="text-foreground/70">+65 9681 2234 | +65 8500 9203</p>
+                    <p className="text-foreground/70">+65 62297788 | +65 88602526</p>
                   </div>
                 </div>
                 
