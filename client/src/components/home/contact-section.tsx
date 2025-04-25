@@ -202,17 +202,16 @@ const ContactSection = () => {
                       >
                         <motion.div
                           className="message outgoing-message"
-                          initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
+                          initial={{ x: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
-                            x: "500%", 
-                            y: "0%", 
+                            x: "900%", 
                             scale: [0.8, 1, 0.8],
                             opacity: [0, 1, 0]
                           }}
                           transition={{ 
-                            duration: 1.5,
+                            duration: 2,
                             repeat: Infinity,
-                            repeatDelay: 1.5,
+                            repeatDelay: 1,
                             ease: "easeInOut",
                           }}
                         >
@@ -224,9 +223,9 @@ const ContactSection = () => {
                           initial={{ width: "0%" }}
                           animate={{ width: "100%" }}
                           transition={{
-                            duration: 0.8,
+                            duration: 1,
                             repeat: Infinity,
-                            repeatDelay: 2.2,
+                            repeatDelay: 2,
                             ease: "easeInOut",
                             delay: 0.2
                           }}
@@ -244,27 +243,26 @@ const ContactSection = () => {
                           initial={{ width: "0%" }}
                           animate={{ width: "100%" }}
                           transition={{
-                            duration: 0.8,
+                            duration: 1,
                             repeat: Infinity,
-                            repeatDelay: 2.2,
-                            delay: 1.7,
+                            repeatDelay: 2,
+                            delay: 1.5,
                             ease: "easeInOut"
                           }}
                         />
                         
                         <motion.div
                           className="message incoming-message"
-                          initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
+                          initial={{ x: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
-                            x: "-500%", 
-                            y: "0%", 
+                            x: "-900%", 
                             scale: [0.8, 1, 0.8],
                             opacity: [0, 1, 0]
                           }}
                           transition={{ 
-                            duration: 1.5,
+                            duration: 2,
                             repeat: Infinity,
-                            repeatDelay: 1.5,
+                            repeatDelay: 1,
                             delay: 1.7,
                             ease: "easeInOut"
                           }}
