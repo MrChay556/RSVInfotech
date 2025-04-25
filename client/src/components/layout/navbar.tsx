@@ -49,16 +49,11 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <div className="flex items-center">
-                <div className="flex items-center">
+                <div className="flex items-center relative">
                   <span className="font-orbitron font-bold text-2xl tracking-wider">RSV</span>
                   <span className="text-primary text-2xl mx-0.5">.</span>
-                  <span className="font-orbitron font-bold text-2xl tracking-wider relative">
-                    INFOTEC
-                    <span className="font-orbitron font-bold tracking-wider relative">
-                      H
-                      <span className="absolute -top-2 -right-2 bg-primary/90 text-[8px] font-bold text-white px-0.5 rounded">AI</span>
-                    </span>
-                  </span>
+                  <span className="font-orbitron font-bold text-2xl tracking-wider">INFOTECH</span>
+                  <span className="absolute -top-2 right-0 bg-primary text-[8px] font-bold text-white px-0.5 rounded-sm">AI</span>
                 </div>
               </div>
             </Link>

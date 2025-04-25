@@ -30,10 +30,16 @@ const Footer = () => {
           <div>
             <Link href="/" className="flex items-center mb-6">
               <div className="flex items-center">
-                <span className="font-orbitron font-bold text-2xl tracking-wider">RSV</span>
-                <span className="text-primary text-2xl mx-0.5">.</span>
-                <span className="font-orbitron font-bold text-2xl tracking-wider">INFOTECH</span>
-                <span className="font-orbitron font-bold text-2xl tracking-wider ml-1">PTE. LTD.</span>
+                <div className="flex">
+                  <span className="font-orbitron font-bold text-2xl tracking-wider">RSV</span>
+                  <span className="text-primary text-2xl mx-0.5">.</span>
+                  <span className="font-orbitron font-bold text-2xl tracking-wider">INFOTECH</span>
+                </div>
+                <div className="ml-4 -mt-2">
+                  <span className="font-orbitron text-lg tracking-wider">PTE.</span>
+                  <br />
+                  <span className="font-orbitron text-lg tracking-wider">LTD.</span>
+                </div>
               </div>
             </Link>
             <p className="text-foreground/70 mb-6">
