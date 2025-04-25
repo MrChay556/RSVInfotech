@@ -1,6 +1,5 @@
 import { ReactNode, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useParticles } from '@/hooks/use-particles';
 
 interface ServiceLayoutProps {
   children: ReactNode;
@@ -9,16 +8,73 @@ interface ServiceLayoutProps {
 }
 
 const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
-  // Use the same particles hook as the home page for consistent interactions
-  const { particlesInit, particlesLoaded } = useParticles();
+  useEffect(() => {
+    // Load particles via direct script
+    if (typeof window !== 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js';
+      script.async = true;
+      
+      script.onload = () => {
+        if ((window as any).tsParticles) {
+          (window as any).tsParticles.load('service-particles', {
+            particles: {
+              number: { value: 80, density: { enable: true, value_area: 800 } },
+              color: { value: ["#00F5FF", "#A020F0"] },
+              shape: { type: "circle" },
+              opacity: { value: 0.3, random: true },
+              size: { value: 3, random: true },
+              move: {
+                enable: true,
+                speed: 1,
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out"
+              },
+              line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#00F5FF",
+                opacity: 0.2,
+                width: 1
+              }
+            },
+            interactivity: {
+              detect_on: "canvas",
+              events: {
+                onhover: { enable: true, mode: "grab" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+              },
+              modes: {
+                grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                push: { particles_nb: 4 }
+              }
+            },
+            retina_detect: true
+          });
+        }
+      };
+      
+      document.body.appendChild(script);
+      
+      return () => {
+        // Clean up
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    }
+  }, []);
 
   return (
     <div className="flex flex-col">
       {/* Page Header - with particles for mouse interaction */}
       <div className="bg-gradient-to-r from-primary/90 to-secondary/90 py-20 relative overflow-hidden min-h-[50vh] flex items-center">
-        {/* Particles Background - using the same ID as home page for consistent effects */}
+        {/* Particles Background - using unique ID for service pages */}
         <div 
-          id="hero-particles" 
+          id="service-particles" 
           className="absolute inset-0 z-0"
           style={{ position: "absolute", width: "100%", height: "100%" }}
         />
