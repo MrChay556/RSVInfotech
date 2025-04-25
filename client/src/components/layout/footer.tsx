@@ -12,15 +12,21 @@ const Footer = () => {
   ];
 
   const serviceLinks = [
-    { name: "Managed IT Services", href: "#services" },
-    { name: "Cloud Computing", href: "#services" },
-    { name: "IT Security", href: "#services" },
-    { name: "Software Development", href: "#services" },
-    { name: "AI Solutions", href: "#services" },
+    { name: "IT Services", href: "/services/it-services" },
+    { name: "IT Networking", href: "/services/it-networking" },
+    { name: "IT Security", href: "/services/it-security" },
+    { name: "Cloud Technologies", href: "/services/cloud-technologies" },
+    { name: "VoIP Services", href: "/services/voip" },
+    { name: "Software Development", href: "/services/software-development" },
+    { name: "AI Solutions", href: "/services/ai-solutions" },
   ];
 
   const handleClick = (id: string) => {
-    scrollToElement(id.substring(1));
+    if (id.startsWith('#')) {
+      scrollToElement(id.substring(1));
+    } else {
+      window.location.href = id;
+    }
   };
 
   return (
