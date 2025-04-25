@@ -1,8 +1,10 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Facebook, Linkedin } from "lucide-react";
 import { scrollToElement } from "@/lib/utils";
 
 const Footer = () => {
+  const [, setLocation] = useLocation();
+  
   const quickLinks = [
     { name: "Home", href: "#home" },
     { name: "About Us", href: "#about" },
@@ -23,9 +25,11 @@ const Footer = () => {
 
   const handleClick = (id: string) => {
     if (id.startsWith('#')) {
+      // Handle anchor links by scrolling
       scrollToElement(id.substring(1));
     } else {
-      window.location.href = id;
+      // Handle navigation links using wouter
+      setLocation(id);
     }
   };
 
