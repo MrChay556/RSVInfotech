@@ -227,62 +227,7 @@ const ContactSection = () => {
                         </div>
                       </div>
                       
-                      {/* Outgoing message - User to Company */}
-                      <motion.div
-                        className="message outgoing-message"
-                        initial={{ 
-                          bottom: 20, 
-                          left: "calc(50% - 18px)",
-                          opacity: 0 
-                        }}
-                        style={{
-                          position: "absolute"
-                        }}
-                        animate={{
-                          bottom: 200,
-                          left: "calc(50% - 18px)",
-                          opacity: [0, 1, 0],
-                          x: [0, 60, 0], 
-                          y: [-10, -90, -180]
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          repeatDelay: 1,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        <Mail className="mail-icon" size={16} />
-                      </motion.div>
-                      
-                      {/* Incoming message - Company to User */}
-                      <motion.div
-                        className="message incoming-message"
-                        initial={{ 
-                          top: 20, 
-                          left: "calc(50% - 18px)",
-                          opacity: 0 
-                        }}
-                        style={{
-                          position: "absolute"
-                        }}
-                        animate={{
-                          top: 200,
-                          left: "calc(50% - 18px)",
-                          opacity: [0, 1, 0],
-                          x: [0, -60, 0],
-                          y: [-10, -90, -180]
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          repeatDelay: 1,
-                          delay: 1.5,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        <MessageSquare className="response-icon" size={16} />
-                      </motion.div>
+                      {/* No messages, just keep the animated paths */}
                       
                       {/* Animated arrow trails */}
                       <svg className="arrows" width="220" height="220" viewBox="0 0 220 220" style={{ position: 'absolute', top: 0, left: 0 }}>

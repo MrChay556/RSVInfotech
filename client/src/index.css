@@ -283,31 +283,7 @@
   font-size: 24px;
 }
 
-/* Messages */
-.message {
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-  filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.7));
-}
-
-.outgoing-message {
-  background: linear-gradient(45deg, #00F5FF, #0092a3);
-}
-
-.incoming-message {
-  background: linear-gradient(45deg, #A020F0, #6913a0);
-}
-
-.mail-icon,
-.response-icon {
-  color: white;
-}
+/* Message styling removed as requested */
 
 /* Arrow path markers */
 .arrow-marker {
@@ -340,10 +316,7 @@
   }
 }
 
-.mail-icon,
-.response-icon {
-  color: white;
-}
+/* Icon styling removed as requested */
 
 /* Quick Response Banner */
 .quick-response-banner {
