@@ -210,9 +210,9 @@ const ContactSection = () => {
                             opacity: [0, 1, 0]
                           }}
                           transition={{ 
-                            duration: 2,
+                            duration: 1.5,
                             repeat: Infinity,
-                            repeatDelay: 1,
+                            repeatDelay: 1.5,
                             ease: "easeInOut",
                           }}
                         >
@@ -227,7 +227,8 @@ const ContactSection = () => {
                             duration: 0.8,
                             repeat: Infinity,
                             repeatDelay: 2.2,
-                            ease: "easeInOut"
+                            ease: "easeInOut",
+                            delay: 0.2
                           }}
                         />
                       </motion.div>
@@ -246,7 +247,7 @@ const ContactSection = () => {
                             duration: 0.8,
                             repeat: Infinity,
                             repeatDelay: 2.2,
-                            delay: 1.5,
+                            delay: 1.7,
                             ease: "easeInOut"
                           }}
                         />
@@ -256,15 +257,15 @@ const ContactSection = () => {
                           initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
                             x: "-130%", 
-                            y: "130%", 
+                            y: "-130%", 
                             scale: [0.8, 1, 1],
                             opacity: [0, 1, 0]
                           }}
                           transition={{ 
-                            duration: 2,
+                            duration: 1.5,
                             repeat: Infinity,
-                            repeatDelay: 1,
-                            delay: 1.5,
+                            repeatDelay: 1.5,
+                            delay: 1.7,
                             ease: "easeInOut"
                           }}
                         >
@@ -273,22 +274,6 @@ const ContactSection = () => {
                       </motion.div>
                     </div>
                     
-                    <motion.div 
-                      className="quick-response-banner"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        delay: 0.5,
-                        duration: 0.5
-                      }}
-                    >
-                      <CheckCircle2 className="check-icon" size={16} />
-                      <span>We respond immediately</span>
-                    </motion.div>
-                  </div>
-                  
-                  <div className="absolute bottom-4 left-0 right-0 text-center text-sm opacity-80 font-medium">
-                    When you inquire, we reply immediately
                   </div>
                 </motion.div>
               </div>

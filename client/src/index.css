@@ -231,12 +231,12 @@
 
 .user-icon {
   left: 15%;
-  bottom: 30%;
+  bottom: 35%;
 }
 
 .company-icon {
   right: 15%;
-  top: 30%;
+  bottom: 35%;
 }
 
 .icon-circle {
@@ -279,7 +279,7 @@
 
 .reply-container {
   bottom: 40%;
-  transform: rotate(-30deg);
+  transform: rotate(30deg);
 }
 
 .arrow {
