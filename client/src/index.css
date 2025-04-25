@@ -231,12 +231,14 @@
 
 .user-icon {
   left: 15%;
-  bottom: 35%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .company-icon {
   right: 15%;
-  bottom: 35%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .icon-circle {
@@ -273,13 +275,13 @@
 }
 
 .send-container {
-  top: 40%;
-  transform: rotate(-30deg);
+  top: 35%;
+  transform: rotate(0deg);
 }
 
 .reply-container {
-  bottom: 40%;
-  transform: rotate(30deg);
+  bottom: 35%;
+  transform: rotate(0deg);
 }
 
 .arrow {

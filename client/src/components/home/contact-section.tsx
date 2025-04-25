@@ -205,7 +205,7 @@ const ContactSection = () => {
                           initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
                             x: "130%", 
-                            y: "-130%", 
+                            y: "0%", 
                             scale: [0.8, 1, 1],
                             opacity: [0, 1, 0]
                           }}
@@ -257,7 +257,7 @@ const ContactSection = () => {
                           initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
                             x: "-130%", 
-                            y: "-130%", 
+                            y: "0%", 
                             scale: [0.8, 1, 1],
                             opacity: [0, 1, 0]
                           }}
