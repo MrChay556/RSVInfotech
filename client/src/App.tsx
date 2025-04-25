@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import ScrollToTop from "@/components/layout/scroll-to-top";
 import Chatbot from "@/components/ui/chatbot";
 import { motion, AnimatePresence } from "framer-motion";
 import SoftwareDevelopment from "@/pages/services/software-development";
@@ -40,6 +41,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="relative min-h-screen flex flex-col">
+          <ScrollToTop />
           <Navbar />
           <Router />
           <Footer />
