@@ -110,7 +110,7 @@ const SoftwareDevelopmentPage = () => {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl font-orbitron font-bold mb-6">Accelerate Your Digital Transformation</h2>
-            <div className="prose prose-lg dark:prose-invert">
+            <div className="prose prose-lg">
               <p>
                 In today's rapidly evolving digital landscape, bespoke software solutions can give your business the competitive edge it needs. At RSV Infotech, we combine technical expertise with industry knowledge to deliver software that not only meets your current needs but is also built to scale with your business.
               </p>

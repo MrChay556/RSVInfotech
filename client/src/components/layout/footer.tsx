@@ -24,8 +24,16 @@ const Footer = () => {
   ];
 
   const handleClick = (id: string) => {
-    if (id.startsWith('#')) {
-      // Handle anchor links by scrolling
+    if (window.location.pathname !== '/' && id.startsWith('#')) {
+      // If we're not on the home page and trying to navigate to a section
+      // Go to homepage first then scroll
+      setLocation('/');
+      // Add small timeout to ensure navigation completes before scrolling
+      setTimeout(() => {
+        scrollToElement(id.substring(1));
+      }, 100);
+    } else if (id.startsWith('#')) {
+      // Handle anchor links by scrolling when already on home page
       scrollToElement(id.substring(1));
     } else {
       // Handle navigation links using wouter
@@ -78,7 +86,7 @@ const Footer = () => {
                 <li key={link.name}>
                   {link.href.startsWith('#') ? (
                     <button 
-                      onClick={() => scrollToElement(link.href.substring(1))}
+                      onClick={() => handleClick(link.href)}
                       className="text-foreground/70 hover:text-primary transition-colors cursor-pointer"
                     >
                       {link.name}
