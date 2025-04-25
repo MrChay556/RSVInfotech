@@ -260,7 +260,7 @@
 /* Arrows and Messages */
 .arrows-container {
   position: absolute;
-  width: 65%;
+  width: 70%;
   height: 200px;
   left: 50%;
   top: 50%;
@@ -275,12 +275,12 @@
 }
 
 .send-container {
-  top: 35%;
+  top: 30%;
   transform: rotate(0deg);
 }
 
 .reply-container {
-  bottom: 35%;
+  bottom: 30%;
   transform: rotate(0deg);
 }
 
@@ -317,14 +317,19 @@
   border-right: 10px solid #00F5FF;
 }
 
+.send-arrow {
+  background: linear-gradient(to right, #00F5FF, #A020F0);
+}
+
 .reply-arrow {
-  background: linear-gradient(to left, #00F5FF, #A020F0);
+  background: linear-gradient(to left, #A020F0, #00F5FF);
 }
 
 /* Messages */
 .message {
   position: absolute;
-  bottom: 50%;
+  top: 50%;
+  transform: translateY(-50%);
   width: 32px;
   height: 32px;
   background: rgba(0, 0, 0, 0.7);

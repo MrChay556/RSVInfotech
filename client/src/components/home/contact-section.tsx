@@ -204,9 +204,9 @@ const ContactSection = () => {
                           className="message outgoing-message"
                           initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
-                            x: "130%", 
+                            x: "500%", 
                             y: "0%", 
-                            scale: [0.8, 1, 1],
+                            scale: [0.8, 1, 0.8],
                             opacity: [0, 1, 0]
                           }}
                           transition={{ 
@@ -256,9 +256,9 @@ const ContactSection = () => {
                           className="message incoming-message"
                           initial={{ x: "0%", y: "0%", scale: 0.8, opacity: 0 }}
                           animate={{ 
-                            x: "-130%", 
+                            x: "-500%", 
                             y: "0%", 
-                            scale: [0.8, 1, 1],
+                            scale: [0.8, 1, 0.8],
                             opacity: [0, 1, 0]
                           }}
                           transition={{ 
