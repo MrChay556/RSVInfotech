@@ -29,11 +29,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link href="/" className="flex items-center mb-6">
-              <div className="flex items-center">
-                <span className="font-orbitron font-bold text-2xl tracking-wider">RSV</span>
-                <span className="text-primary text-2xl mx-0.5">.</span>
-                <span className="font-orbitron font-bold text-2xl tracking-wider">INFOTECH</span>
-                <span className="ml-2 font-orbitron font-bold text-2xl tracking-wider">PTE. LTD.</span>
+              <div className="font-orbitron font-bold text-2xl tracking-wider flex items-center">
+                <span>RSV</span>
+                <span className="text-primary mx-0.5">.</span>
+                <span>INFOTECH</span>
+                <span className="ml-2">PTE. LTD.</span>
               </div>
             </Link>
             <p className="text-foreground/70 mb-6">
