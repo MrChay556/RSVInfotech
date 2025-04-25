@@ -45,13 +45,18 @@ const Navbar = () => {
     )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo - Matching BrutallyHired Style */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="font-orbitron font-bold text-background">R</span>
+            <Link href="/" className="flex items-center">
+              <div className="flex items-center">
+                <div className="bg-gradient-to-r from-primary to-secondary p-1.5 rounded-lg mr-3">
+                  <span className="font-orbitron font-bold text-white text-lg tracking-wider">RSV</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-orbitron font-bold text-lg leading-tight">INFOTECH</span>
+                  <span className="text-[10px] text-foreground/70 -mt-1">IT SOLUTIONS & SERVICES</span>
+                </div>
               </div>
-              <span className="font-orbitron font-bold text-xl tracking-wider">RSV INFOTECH</span>
             </Link>
           </div>
           

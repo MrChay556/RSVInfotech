@@ -54,35 +54,95 @@ const HeroSection = () => {
             <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
             <div className="relative animate-float">
               <div className="rounded-2xl shadow-2xl shadow-secondary/20 w-full max-w-lg mx-auto overflow-hidden bg-background/50 backdrop-blur-sm p-8">
-                <div className="relative z-10">
-                  <div className="grid grid-cols-3 gap-4 mb-4">
-                    {Array.from({ length: 6 }).map((_, i) => (
-                      <div 
-                        key={i} 
-                        className="aspect-square rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center"
-                      >
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center animate-pulse-glow">
-                          <span className="font-orbitron font-bold text-xs gradient-text">AI</span>
+                {/* RSV Infotech Logo - Similar to BrutallyHired */}
+                <div className="flex justify-center mb-6">
+                  <div className="relative">
+                    <div className="flex items-center">
+                      <div className="bg-gradient-to-r from-primary to-secondary p-3 rounded-xl mr-4">
+                        <span className="font-orbitron font-bold text-white text-2xl tracking-wider">RSV</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-orbitron font-bold text-xl">INFOTECH</span>
+                        <span className="text-xs text-foreground/70">IT SOLUTIONS & SERVICES</span>
+                      </div>
+                    </div>
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-primary to-secondary"></div>
+                  </div>
+                </div>
+                
+                {/* Meaningful Visualization of IT & AI Services */}
+                <div className="relative z-10 mb-6">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/5 to-secondary/5 backdrop-blur-sm border border-white/10 mb-4">
+                    <div className="flex items-center mb-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mr-3">
+                        <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M12 3V5.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M12 18.75V21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M5.63599 5.63599L7.16999 7.16999" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M16.83 16.83L18.364 18.364" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M3 12H5.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M18.75 12H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M5.63599 18.364L7.16999 16.83" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M16.83 7.16999L18.364 5.63599" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-orbitron text-sm font-bold">AI-Powered Innovation</h4>
+                        <div className="w-full bg-background/50 h-1.5 rounded-full mt-1">
+                          <div className="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-5/6 animate-pulse-glow"></div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                  <div className="h-24 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center mb-4">
-                    <div className="text-center">
-                      <h3 className="font-orbitron text-lg font-bold gradient-text mb-1">Smart AI Technology</h3>
-                      <p className="text-sm text-foreground/70">Next-generation solutions</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-3">
+                      <div className="p-2 rounded-lg bg-background/50 flex flex-col items-center justify-center">
+                        <svg className="w-6 h-6 text-primary mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                        <span className="text-xs">Cloud</span>
+                      </div>
+                      <div className="p-2 rounded-lg bg-background/50 flex flex-col items-center justify-center">
+                        <svg className="w-6 h-6 text-primary mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                        </svg>
+                        <span className="text-xs">Security</span>
+                      </div>
+                      <div className="p-2 rounded-lg bg-background/50 flex flex-col items-center justify-center">
+                        <svg className="w-6 h-6 text-primary mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                        <span className="text-xs">VoIP</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="h-16 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                      <span className="text-center text-sm text-foreground/70">Advanced<br/>Analytics</span>
+                  
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/5 to-secondary/5 backdrop-blur-sm border border-white/10">
+                    <div className="flex justify-between items-center mb-3">
+                      <h4 className="font-orbitron text-sm font-bold">IT Infrastructure</h4>
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+                        <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: '1s' }}></div>
+                      </div>
                     </div>
-                    <div className="h-16 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                      <span className="text-center text-sm text-foreground/70">Business<br/>Intelligence</span>
+                    
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="rounded-lg p-2 bg-background/50 flex items-center">
+                        <svg className="w-6 h-6 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 004.5 4.5m11.25-4.5H21m-3.75 0h3.75m-3.75 0a3 3 0 01-3 3m0 0h-3m3 0a3 3 0 100 6h-3m3-6h-3" />
+                        </svg>
+                        <span className="text-xs">Networking</span>
+                      </div>
+                      <div className="rounded-lg p-2 bg-background/50 flex items-center">
+                        <svg className="w-6 h-6 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
+                        </svg>
+                        <span className="text-xs">Software</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 to-secondary/5 z-0"></div>
               </div>
               <div className="absolute -bottom-5 -right-5 w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
