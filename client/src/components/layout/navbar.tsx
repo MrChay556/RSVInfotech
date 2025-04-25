@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { scrollToElement } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const isHomePage = location === "/";
   
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +21,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  // Home page navigation links
+  const homeNavLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
@@ -27,15 +30,50 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" }
   ];
 
-  const scrollToSection = (id: string) => {
+  // Service page navigation links
+  const serviceNavLinks = [
+    { name: "Home", href: "/" },
+    { name: "IT Services", href: "/services/it-services" },
+    { name: "IT Networking", href: "/services/it-networking" },
+    { name: "IT Security", href: "/services/it-security" },
+    { name: "Cloud Technologies", href: "/services/cloud-technologies" },
+    { name: "VoIP Services", href: "/services/voip" },
+    { name: "Software Development", href: "/services/software-development" },
+    { name: "AI Solutions", href: "/services/ai-solutions" }
+  ];
+
+  // Use appropriate navigation links based on current page
+  const navLinks = isHomePage ? homeNavLinks : serviceNavLinks;
+
+  const handleNavigation = (link: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
+    
+    if (link.startsWith('#')) {
+      // It's an anchor link for the homepage
+      if (isHomePage) {
+        // Already on homepage, just scroll
+        scrollToElement(link.substring(1));
+      } else {
+        // Navigate to homepage first, then scroll
+        setLocation('/');
+        setTimeout(() => {
+          scrollToElement(link.substring(1));
+        }, 100);
+      }
+    } else {
+      // Regular navigation to another page
+      setLocation(link);
+      // Scroll to top on page navigation
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: 0,
         behavior: "smooth"
       });
     }
+  };
+  
+  // For backward compatibility
+  const scrollToSection = (id: string) => {
+    handleNavigation(`#${id}`);
   };
 
   return (
@@ -66,15 +104,20 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href.substring(1))}
-                  className="text-foreground/90 hover:text-primary transition-colors duration-300 text-sm"
+                  onClick={() => handleNavigation(link.href)}
+                  className={cn(
+                    "text-foreground/90 hover:text-primary transition-colors duration-300 text-sm",
+                    location === link.href && !link.href.startsWith('#') && "text-primary font-medium"
+                  )}
                 >
                   {link.name}
                 </button>
               ))}
-              <Button className="px-5 py-2 rounded-md bg-gradient-to-r from-primary to-secondary glow-button text-white font-medium text-sm">
-                Get Started
-              </Button>
+              <Link href="#contact">
+                <Button className="px-5 py-2 rounded-md bg-gradient-to-r from-primary to-secondary glow-button text-white font-medium text-sm">
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </div>
           
@@ -95,7 +138,7 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Menu */}
+      {/* Mobile Menu - with updated navigation */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
@@ -109,13 +152,19 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href.substring(1))}
-                  className="block w-full text-left px-3 py-2 text-foreground/90 hover:text-primary transition-colors duration-300"
+                  onClick={() => handleNavigation(link.href)}
+                  className={cn(
+                    "block w-full text-left px-3 py-2 text-foreground/90 hover:text-primary transition-colors duration-300",
+                    location === link.href && !link.href.startsWith('#') && "text-primary font-medium"
+                  )}
                 >
                   {link.name}
                 </button>
               ))}
-              <Button className="mt-2 w-full px-4 py-2 rounded-md bg-gradient-to-r from-primary to-secondary text-white font-medium text-sm">
+              <Button 
+                onClick={() => handleNavigation('#contact')}
+                className="mt-2 w-full px-4 py-2 rounded-md bg-gradient-to-r from-primary to-secondary text-white font-medium text-sm"
+              >
                 Get Started
               </Button>
             </div>
