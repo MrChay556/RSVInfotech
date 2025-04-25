@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link href="/" className="mb-6 block">
-              <h2 className="font-orbitron font-bold text-2xl">
+              <h2 className="font-orbitron font-bold text-2xl whitespace-nowrap">
                 <span>RSV</span>
                 <span className="text-primary">.</span>
                 <span>INFOTECH</span>
