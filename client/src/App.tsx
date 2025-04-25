@@ -9,12 +9,16 @@ import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import Chatbot from "@/components/ui/chatbot";
 import { motion, AnimatePresence } from "framer-motion";
+import SoftwareDevelopment from "@/pages/services/software-development";
+import AISolutions from "@/pages/services/ai-solutions";
 
 function Router() {
   return (
     <AnimatePresence mode="wait">
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/services/software-development" component={SoftwareDevelopment} />
+        <Route path="/services/ai-solutions" component={AISolutions} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>
@@ -26,11 +30,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="relative min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
-            <Router />
-          </main>
-          <Footer />
+          <Router />
           <Chatbot />
         </div>
         <Toaster />

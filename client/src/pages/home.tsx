@@ -5,6 +5,8 @@ import AboutSection from "@/components/home/about-section";
 import ServicesSection from "@/components/home/services-section";
 import WhyChooseSection from "@/components/home/why-choose-section";
 import ContactSection from "@/components/home/contact-section";
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
 
 const Home = () => {
   useEffect(() => {
@@ -12,18 +14,23 @@ const Home = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <WhyChooseSection />
-      <ContactSection />
-    </motion.div>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex-grow"
+      >
+        <HeroSection />
+        <AboutSection />
+        <ServicesSection />
+        <WhyChooseSection />
+        <ContactSection />
+      </motion.div>
+      <Footer />
+    </div>
   );
 };
 
