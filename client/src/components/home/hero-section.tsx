@@ -1,10 +1,71 @@
 import { Button } from "@/components/ui/button";
-import { useParticles } from "@/hooks/use-particles";
 import { motion } from "framer-motion";
 import { scrollToElement } from "@/lib/utils";
+import { useEffect } from "react";
 
 const HeroSection = () => {
-  const { particlesInit, particlesLoaded } = useParticles();
+  // Direct implementation of particles for maximum interactivity
+  useEffect(() => {
+    const loadParticlesScript = async () => {
+      // Load tsParticles directly
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js';
+      script.async = true;
+      
+      script.onload = () => {
+        if ((window as any).tsParticles) {
+          (window as any).tsParticles.load('hero-particles', {
+            particles: {
+              number: { value: 100, density: { enable: true, value_area: 800 } },
+              color: { value: ["#00F5FF", "#A020F0"] },
+              shape: { type: "circle" },
+              opacity: { value: 0.5, random: true },
+              size: { value: 3, random: true },
+              move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false
+              },
+              line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#00F5FF",
+                opacity: 0.3,
+                width: 1
+              }
+            },
+            interactivity: {
+              detect_on: "canvas",
+              events: {
+                onhover: { enable: true, mode: "grab" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+              },
+              modes: {
+                grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                push: { particles_nb: 4 }
+              }
+            },
+            retina_detect: true
+          });
+        }
+      };
+      
+      document.body.appendChild(script);
+      
+      return () => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    };
+    
+    loadParticlesScript();
+  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center py-16 overflow-hidden">

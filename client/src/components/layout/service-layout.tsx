@@ -19,24 +19,25 @@ const ServiceLayout = ({ children, title, subtitle }: ServiceLayoutProps) => {
         if ((window as any).tsParticles) {
           (window as any).tsParticles.load('service-particles', {
             particles: {
-              number: { value: 80, density: { enable: true, value_area: 800 } },
+              number: { value: 100, density: { enable: true, value_area: 800 } },
               color: { value: ["#00F5FF", "#A020F0"] },
               shape: { type: "circle" },
-              opacity: { value: 0.3, random: true },
+              opacity: { value: 0.5, random: true },
               size: { value: 3, random: true },
               move: {
                 enable: true,
-                speed: 1,
+                speed: 2,
                 direction: "none",
                 random: true,
                 straight: false,
-                out_mode: "out"
+                out_mode: "out",
+                bounce: false
               },
               line_linked: {
                 enable: true,
                 distance: 150,
                 color: "#00F5FF",
-                opacity: 0.2,
+                opacity: 0.3,
                 width: 1
               }
             },
