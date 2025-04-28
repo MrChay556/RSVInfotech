@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSV Infotech Pte Ltd - IT & AI Solutions</title>
+  <meta name="description" content="RSV Infotech provides cutting-edge IT services, AI solutions, software development, and tech consulting to businesses across Singapore.">
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    /* Basic styling for loading screen */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #0f1729;
+      color: #ffffff;
+    }
+    .loading-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+    }
+    .loading-logo {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #3b82f6;
+    }
+    .loading-spinner {
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #3b82f6;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="loading-screen">
+      <div class="loading-logo">RSV.INFOTECH</div>
+      <div class="loading-spinner"></div>
+      <p style="margin-top: 20px; text-align: center;">
+        Website is loading...<br>
+        <small style="opacity: 0.7;">If this message persists, please check your JavaScript settings or contact support.</small>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
