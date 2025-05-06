@@ -55,7 +55,7 @@ const Footer = () => {
               </h2>
             </Link>
             <p className="text-foreground/70 mb-6">
-              Empowering businesses with cutting-edge IT solutions and AI innovation since 2003.
+              Empowering businesses with cutting-edge IT solutions and AI innovation since 2008.
             </p>
             <div className="flex space-x-4">
               <a 
