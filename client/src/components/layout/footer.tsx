@@ -44,14 +44,14 @@ const Footer = () => {
   return (
     <footer className="bg-muted border-t border-white/10 py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-10 mb-12">
           <div>
             <Link href="/" className="mb-6 block">
-              <h2 className="font-orbitron font-bold text-2xl whitespace-nowrap">
+              <h2 className="font-orbitron font-bold text-xl lg:text-2xl mb-2">
                 <span>RSV</span>
                 <span className="text-primary">.</span>
                 <span>INFOTECH</span>
-                <span> PTE. LTD.</span>
+                <span className="block mt-1">PTE. LTD.</span>
               </h2>
             </Link>
             <p className="text-foreground/70 mb-6">
