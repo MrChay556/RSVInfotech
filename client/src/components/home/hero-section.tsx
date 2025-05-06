@@ -120,10 +120,10 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Empowering Businesses with <span className="gradient-text">Cutting-Edge IT</span> Solutions and <span className="gradient-text">AI Innovation</span>
+              Innovative <span className="gradient-text">IT Solutions</span> & <span className="gradient-text">AI Technology</span>
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 mb-10 max-w-2xl">
-              RSV Infotech Pte Ltd — Managed IT Services, Custom Software, Cloud, Networking, Cybersecurity & AI-Powered Solutions
+              Transforming businesses with advanced technology solutions
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 

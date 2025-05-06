@@ -8,7 +8,7 @@ import ContactSection from "@/components/home/contact-section";
 
 const Home = () => {
   useEffect(() => {
-    document.title = "RSV Infotech Pte Ltd - AI-Powered IT Solutions";
+    document.title = "RSV Infotech - IT & AI Solutions";
   }, []);
 
   return (
