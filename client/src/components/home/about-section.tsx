@@ -98,12 +98,9 @@ const AboutSection = () => {
             <div className="rounded-2xl shadow-2xl relative shadow-secondary/20 w-full max-w-lg mx-auto overflow-hidden">
               <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 p-6 flex flex-col justify-center">
                 <div className="flex items-center mb-6">
-                  <div className="w-16 h-16 rounded-lg bg-background/70 flex items-center justify-center mr-4">
-                    <span className="font-orbitron font-bold gradient-text text-2xl">RSV</span>
-                  </div>
                   <div>
-                    <h3 className="font-orbitron text-xl font-bold mb-1">RSV Infotech</h3>
-                    <p className="text-sm text-foreground/70">Singapore • Since 2008</p>
+                    <h3 className="font-orbitron text-xl font-bold mb-1">Singapore • Since 2008</h3>
+                    <div className="h-px w-40 bg-foreground/20 my-2"></div>
                   </div>
                 </div>
                 <div className="bg-background/70 backdrop-blur-sm rounded-xl p-4 mb-4">
