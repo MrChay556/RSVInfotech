@@ -128,7 +128,7 @@ const ContactSection = () => {
         toast({
           title: "Warning",
           description: "Could not verify you are not a robot. Your message will still be sent.",
-          variant: "warning"
+          variant: "default"
         });
       }
       
