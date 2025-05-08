@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import SectionHeading from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,8 +17,19 @@ import {
   User, 
   Building2, 
   MessageSquare, 
-  CheckCircle2 
+  CheckCircle2,
+  Shield
 } from "lucide-react";
+
+// Add TypeScript declaration for reCAPTCHA
+declare global {
+  interface Window {
+    grecaptcha: {
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+      ready: (callback: () => void) => void;
+    };
+  }
+}
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -27,19 +38,62 @@ const ContactSection = () => {
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    recaptchaToken: ""
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   // Email address for inquiries
   const inquiryEmail = "connectme@myrsv.com";
+  
+  // Load Google reCAPTCHA script
+  useEffect(() => {
+    // Don't add the script if it's already there
+    if (document.querySelector('script[src*="recaptcha"]')) return;
+    
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+    
+    script.onload = () => {
+      setRecaptchaLoaded(true);
+      console.log('reCAPTCHA script loaded');
+    };
+    
+    document.head.appendChild(script);
+    
+    return () => {
+      // No need to remove the script on unmount, as it's needed globally
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Execute reCAPTCHA verification
+  const executeRecaptcha = async (): Promise<string | null> => {
+    if (!recaptchaLoaded || !window.grecaptcha) {
+      console.error('reCAPTCHA not loaded');
+      return null;
+    }
+    
+    try {
+      const token = await window.grecaptcha.execute(
+        import.meta.env.VITE_RECAPTCHA_SITE_KEY, 
+        { action: 'submit_contact' }
+      );
+      return token;
+    } catch (error) {
+      console.error('reCAPTCHA execution error:', error);
+      return null;
+    }
+  };
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -67,13 +121,30 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
+      // Get reCAPTCHA token
+      const recaptchaToken = await executeRecaptcha();
+      
+      if (!recaptchaToken) {
+        toast({
+          title: "Warning",
+          description: "Could not verify you are not a robot. Your message will still be sent.",
+          variant: "warning"
+        });
+      }
+      
+      // Include the token in our form data
+      const formDataToSend = {
+        ...formData,
+        recaptchaToken: recaptchaToken || ''
+      };
+      
       // Send data to our API endpoint
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formDataToSend),
       });
       
       const data = await response.json();
@@ -91,7 +162,8 @@ const ContactSection = () => {
         name: "",
         email: "",
         phone: "",
-        message: ""
+        message: "",
+        recaptchaToken: ""
       });
       
       // Hide the form and show the animation again
