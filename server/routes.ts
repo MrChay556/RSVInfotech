@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { sendContactEmail, type ContactFormData } from "./mail";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API route for contact form submission
@@ -19,14 +20,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid email format" });
       }
       
-      // In a real application, you would:
-      // 1. Save the contact form to a database
-      // 2. Send an email notification
-      // 3. Possibly integrate with a CRM
+      // Send email using the mail service
+      const formData: ContactFormData = {
+        name,
+        email,
+        phone,
+        message
+      };
+      
+      const emailSent = await sendContactEmail(formData);
+      
+      if (!emailSent) {
+        return res.status(500).json({ 
+          success: false, 
+          message: "Failed to send email. Please try again later." 
+        });
+      }
       
       return res.status(200).json({ 
         success: true, 
-        message: "Contact form submitted successfully" 
+        message: "Your message has been sent successfully." 
       });
     } catch (error) {
       console.error("Error in contact form submission:", error);
