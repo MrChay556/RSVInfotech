@@ -67,33 +67,43 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // In a real app, this would send data to your backend
-      // await apiRequest("POST", "/api/contact", formData);
+      // Send data to our API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
       
-      // For demo purposes, we'll just simulate a successful submission
-      setTimeout(() => {
-        toast({
-          title: "Success!",
-          description: "Your message has been sent. We'll contact you soon.",
-        });
-        
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: ""
-        });
-        
-        // Hide the form and show the animation again
-        setShowContactForm(false);
-        setIsSubmitting(false);
-      }, 1500);
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
+      
+      toast({
+        title: "Success!",
+        description: "Your message has been sent. We'll contact you soon.",
+      });
+      
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
+      
+      // Hide the form and show the animation again
+      setShowContactForm(false);
     } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again later.",
         variant: "destructive"
       });
+    } finally {
       setIsSubmitting(false);
     }
   };

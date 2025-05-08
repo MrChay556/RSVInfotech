@@ -11,11 +11,17 @@ const smtpConfig = {
   },
 };
 
-// Create transporter
-const transporter = nodemailer.createTransport(smtpConfig);
+// Create transporter with TLS settings to fix certificate issues
+const transporter = nodemailer.createTransport({
+  ...smtpConfig,
+  tls: {
+    // Do not fail on invalid certificates
+    rejectUnauthorized: false
+  }
+});
 
 // Verify the connection
-transporter.verify((error) => {
+transporter.verify((error: any) => {
   if (error) {
     console.error('SMTP connection error:', error);
   } else {
