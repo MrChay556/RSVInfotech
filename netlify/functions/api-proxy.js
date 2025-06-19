@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   // Get the backend URL from environment variable
   const BACKEND_URL = process.env.BACKEND_URL || 'https://your-backend-url.com';
   
