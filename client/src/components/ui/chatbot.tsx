@@ -9,7 +9,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      message: "Hello! How can I help you with your IT needs today?"
+      message: "Hello! 👋 Welcome to RSV Infotech. I'm here to help you with any questions about our IT services. How can I assist you today?"
     }
   ]);
   const [newMessage, setNewMessage] = useState("");
@@ -57,7 +57,7 @@ const Chatbot = () => {
         // Fallback response if AI fails
         const fallbackResponse = {
           sender: "bot",
-          message: "I'm sorry, I'm having trouble processing your request. Please try again or contact our team directly."
+          message: "I'm sorry, I'm having trouble processing your request. Please try again or contact our team directly at connectme@myrsv.com."
         };
         setMessages(prev => [...prev, fallbackResponse]);
       }
@@ -66,7 +66,7 @@ const Chatbot = () => {
       // Fallback response on error
       const errorResponse = {
         sender: "bot",
-        message: "I'm sorry, I'm having trouble connecting right now. Please contact our team directly for assistance."
+        message: "I'm sorry, I'm having trouble connecting right now. Please contact our team directly at connectme@myrsv.com for assistance."
       };
       setMessages(prev => [...prev, errorResponse]);
     } finally {

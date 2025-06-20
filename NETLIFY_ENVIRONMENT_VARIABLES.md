@@ -11,7 +11,7 @@ SMTP_PORT=587
 SMTP_USER=your_smtp_username
 SMTP_PASS=your_smtp_password
 EMAIL_FROM=your_from_email@domain.com
-EMAIL_TO=your_to_email@domain.com
+EMAIL_TO=connectme@myrsv.com
 ```
 
 ### AI Chat Configuration
@@ -46,7 +46,7 @@ SMTP_PORT=587
 SMTP_USER=your_email@gmail.com
 SMTP_PASS=your_app_password
 EMAIL_FROM=your_email@gmail.com
-EMAIL_TO=contact@myrsv.com
+EMAIL_TO=connectme@myrsv.com
 ```
 
 ### Option 2: SendGrid SMTP
@@ -56,7 +56,7 @@ SMTP_PORT=587
 SMTP_USER=apikey
 SMTP_PASS=your_sendgrid_api_key
 EMAIL_FROM=noreply@myrsv.com
-EMAIL_TO=contact@myrsv.com
+EMAIL_TO=connectme@myrsv.com
 ```
 
 ### Option 3: Outlook/Hotmail SMTP
@@ -66,7 +66,7 @@ SMTP_PORT=587
 SMTP_USER=your_email@outlook.com
 SMTP_PASS=your_password
 EMAIL_FROM=your_email@outlook.com
-EMAIL_TO=contact@myrsv.com
+EMAIL_TO=connectme@myrsv.com
 ```
 
 ## 🔐 reCAPTCHA Setup
@@ -104,7 +104,7 @@ netlify env:set SMTP_PORT 587
 netlify env:set SMTP_USER your_email@gmail.com
 netlify env:set SMTP_PASS your_app_password
 netlify env:set EMAIL_FROM your_email@gmail.com
-netlify env:set EMAIL_TO contact@myrsv.com
+netlify env:set EMAIL_TO connectme@myrsv.com
 netlify env:set OPENAI_API_KEY your_openai_api_key
 netlify env:set RECAPTCHA_SECRET_KEY your_secret_key
 netlify env:set VITE_RECAPTCHA_SITE_KEY your_site_key
@@ -173,7 +173,7 @@ SMTP_PORT=587
 SMTP_USER=your_email@gmail.com
 SMTP_PASS=your_16_character_app_password
 EMAIL_FROM=your_email@gmail.com
-EMAIL_TO=contact@myrsv.com
+EMAIL_TO=connectme@myrsv.com
 
 # AI Chat Configuration
 OPENAI_API_KEY=sk-your-openai-api-key-here
