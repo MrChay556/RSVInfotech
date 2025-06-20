@@ -1,69 +1,4 @@
 const axios = require('axios');
-const nodemailer = require('nodemailer');
-
-// Email configuration
-const smtpConfig = {
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false,
-  requireTLS: true,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-};
-
-// Send email function
-async function sendContactEmail(data) {
-  try {
-    const transporter = nodemailer.createTransporter(smtpConfig);
-    
-    const mailOptions = {
-      from: `"${data.name}" <${process.env.EMAIL_FROM}>`,
-      to: process.env.EMAIL_TO,
-      replyTo: data.email,
-      subject: `New AI Chat Contact from ${data.name}`,
-      text: `
-Name: ${data.name}
-Email: ${data.email}
-${data.phone ? `Phone: ${data.phone}` : ''}
-
-Message:
-${data.message}
-      `,
-      html: `
-<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-  <h2 style="color: #3366cc; border-bottom: 1px solid #eee; padding-bottom: 10px;">New AI Chat Contact</h2>
-  
-  <div style="margin: 20px 0;">
-    <p><strong>Name:</strong> ${data.name}</p>
-    <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
-    ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ''}
-  </div>
-  
-  <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 20px;">
-    <h3 style="margin-top: 0; color: #333;">Message:</h3>
-    <p style="white-space: pre-line;">${data.message}</p>
-  </div>
-  
-  <div style="margin-top: 30px; font-size: 12px; color: #666; border-top: 1px solid #eee; padding-top: 10px;">
-    <p>This contact was initiated through the AI chat on your website.</p>
-  </div>
-</div>
-      `,
-    };
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', info.messageId);
-    return true;
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return false;
-  }
-}
 
 exports.handler = async (event, context) => {
   // Handle CORS preflight requests
@@ -92,73 +27,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { message, action, contactData } = JSON.parse(event.body);
-    
-    // Handle contact form submission
-    if (action === 'submit_contact') {
-      const { name, email, phone, message: contactMessage } = contactData;
-      
-      // Validate required fields
-      if (!name || !email || !contactMessage) {
-        return {
-          statusCode: 400,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            success: false,
-            message: "Please provide your name, email, and message." 
-          }),
-        };
-      }
-      
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        return {
-          statusCode: 400,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            success: false,
-            message: "Please provide a valid email address." 
-          }),
-        };
-      }
-      
-      // Send email
-      const emailSent = await sendContactEmail({ name, email, phone, message: contactMessage });
-      
-      if (!emailSent) {
-        return {
-          statusCode: 500,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            success: false,
-            message: "I'm having trouble sending your message. Please try again or contact us directly at connectme@myrsv.com." 
-          }),
-        };
-      }
-      
-      return {
-        statusCode: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          success: true,
-          message: "Thank you! Your message has been sent successfully. Our team will get back to you soon.",
-          action: 'contact_sent'
-        }),
-      };
-    }
+    const { message } = JSON.parse(event.body);
 
     // Handle regular AI chat
     if (!message || typeof message !== 'string') {
@@ -215,9 +84,7 @@ SERVICES OFFERED (from the website):
 8. Firewall & VPN Solutions - Next-gen firewall, secure remote access, network monitoring
 
 IMPORTANT RULES:
-- When customers want to contact you, collect their details instead of just giving contact info
-- Ask for: Name, Email, Phone (optional), and their message
-- Tell them you'll send their information to the team
+- When customers want to contact you, provide the contact email: connectme@myrsv.com
 - DO NOT make up phone numbers, addresses, or other contact details
 - DO NOT provide pricing information - direct customers to contact the team
 - ONLY reference services that are actually listed on the website
