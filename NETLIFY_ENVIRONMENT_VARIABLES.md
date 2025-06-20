@@ -14,11 +14,28 @@ EMAIL_FROM=your_from_email@domain.com
 EMAIL_TO=your_to_email@domain.com
 ```
 
+### AI Chat Configuration
+```
+OPENAI_API_KEY=your_openai_api_key
+```
+
 ### reCAPTCHA Configuration
 ```
 RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
 VITE_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
 ```
+
+## 🤖 OpenAI API Setup
+
+1. **Get OpenAI API Key:**
+   - Go to [OpenAI Platform](https://platform.openai.com/api-keys)
+   - Sign in or create an account
+   - Click "Create new secret key"
+   - Copy the API key
+
+2. **Add to Netlify:**
+   - Go to your Netlify site settings
+   - Add environment variable: `OPENAI_API_KEY=sk-your-api-key-here`
 
 ## 📧 Email Service Options
 
@@ -88,40 +105,51 @@ netlify env:set SMTP_USER your_email@gmail.com
 netlify env:set SMTP_PASS your_app_password
 netlify env:set EMAIL_FROM your_email@gmail.com
 netlify env:set EMAIL_TO contact@myrsv.com
+netlify env:set OPENAI_API_KEY your_openai_api_key
 netlify env:set RECAPTCHA_SECRET_KEY your_secret_key
 netlify env:set VITE_RECAPTCHA_SITE_KEY your_site_key
 ```
 
 ## 🔍 Testing Your Setup
 
-### Test Contact Form
+### Test AI Chat
 1. Deploy your site to Netlify
-2. Go to the contact form
-3. Fill out the form and submit
-4. Check if you receive the email
-5. Check Netlify function logs for any errors
+2. Click the chat bubble (bottom right)
+3. Type a message and check if you get a real AI response
+4. Check Netlify function logs for any errors
+
+### Test Contact Form
+1. Go to the contact form
+2. Fill out the form and submit
+3. Check if you receive the email
+4. Check Netlify function logs for any errors
 
 ### Check Function Logs
 1. Go to your Netlify dashboard
 2. Click on **Functions**
-3. Click on the **contact** function
+3. Click on the function you want to check
 4. Check the **Logs** tab for any errors
 
 ## 🛠️ Troubleshooting
 
 ### Common Issues:
 
-1. **Email not sending:**
+1. **AI Chat not working:**
+   - Check if `OPENAI_API_KEY` is set correctly
+   - Verify the API key is valid and has credits
+   - Check Netlify function logs for OpenAI API errors
+
+2. **Email not sending:**
    - Check SMTP credentials
    - Verify SMTP host and port
    - Check if your email provider allows SMTP access
 
-2. **reCAPTCHA not working:**
+3. **reCAPTCHA not working:**
    - Verify site key and secret key
    - Check domain configuration in reCAPTCHA admin
    - Ensure keys are correctly set in environment variables
 
-3. **Function errors:**
+4. **Function errors:**
    - Check Netlify function logs
    - Verify all environment variables are set
    - Check if dependencies are properly installed
@@ -136,7 +164,7 @@ If using Gmail, you need to create an App Password:
 
 ## 📝 Example Configuration
 
-Here's a complete example for Gmail:
+Here's a complete example:
 
 ```env
 # Email Configuration
@@ -147,6 +175,9 @@ SMTP_PASS=your_16_character_app_password
 EMAIL_FROM=your_email@gmail.com
 EMAIL_TO=contact@myrsv.com
 
+# AI Chat Configuration
+OPENAI_API_KEY=sk-your-openai-api-key-here
+
 # reCAPTCHA Configuration
 RECAPTCHA_SECRET_KEY=6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 VITE_RECAPTCHA_SITE_KEY=6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -156,6 +187,7 @@ VITE_RECAPTCHA_SITE_KEY=6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 - Never commit environment variables to Git
 - Use strong, unique passwords for SMTP
+- Keep your OpenAI API key secure
 - Regularly rotate your reCAPTCHA keys
 - Monitor function logs for suspicious activity
 - Consider using environment-specific configurations
@@ -163,8 +195,9 @@ VITE_RECAPTCHA_SITE_KEY=6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ## 📞 Support
 
 If you encounter issues:
-1. Check the Netlify function logs
-2. Verify all environment variables are set correctly
-3. Test your SMTP configuration locally
-4. Check the reCAPTCHA configuration
-5. Review the troubleshooting section above 
+1. Check Netlify's function logs
+2. Verify your local build works: `npm run build`
+3. Check the Netlify documentation: [docs.netlify.com](https://docs.netlify.com)
+4. Verify all environment variables are set correctly
+5. Test your SMTP configuration locally
+6. Check the reCAPTCHA configuration 
