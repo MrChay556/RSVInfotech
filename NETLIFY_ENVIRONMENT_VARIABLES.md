@@ -1,203 +1,158 @@
 # Netlify Environment Variables Setup
 
-This guide will help you set up all the necessary environment variables in Netlify for your RSV Infotech website.
+This guide explains how to set up the required environment variables for your RSV Infotech website deployment on Netlify.
 
-## 🔧 Required Environment Variables
+## Required Environment Variables
 
-### Email Configuration (for Contact Form)
+### 1. Email Configuration (for Contact Form and AI Chat)
+These variables are used by both the contact form and AI chat to send emails to your team.
+
 ```
-SMTP_HOST=your_smtp_host
+SMTP_HOST=your-smtp-host.com
 SMTP_PORT=587
-SMTP_USER=your_smtp_username
-SMTP_PASS=your_smtp_password
-EMAIL_FROM=your_from_email@domain.com
+SMTP_USER=your-smtp-username
+SMTP_PASS=your-smtp-password
+EMAIL_FROM=noreply@yourdomain.com
 EMAIL_TO=connectme@myrsv.com
 ```
 
-### AI Chat Configuration
+**Explanation:**
+- `SMTP_HOST`: Your SMTP server hostname (e.g., smtp.gmail.com, smtp.office365.com)
+- `SMTP_PORT`: SMTP port (usually 587 for TLS or 465 for SSL)
+- `SMTP_USER`: Your SMTP username/email
+- `SMTP_PASS`: Your SMTP password or app password
+- `EMAIL_FROM`: The "from" email address (should match your SMTP user)
+- `EMAIL_TO`: Where contact form submissions and AI chat contacts will be sent (connectme@myrsv.com)
+
+### 2. AI Chat Configuration
 ```
-OPENAI_API_KEY=your_openai_api_key
-```
-
-### reCAPTCHA Configuration
-```
-RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
-VITE_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
-```
-
-## 🤖 OpenAI API Setup
-
-1. **Get OpenAI API Key:**
-   - Go to [OpenAI Platform](https://platform.openai.com/api-keys)
-   - Sign in or create an account
-   - Click "Create new secret key"
-   - Copy the API key
-
-2. **Add to Netlify:**
-   - Go to your Netlify site settings
-   - Add environment variable: `OPENAI_API_KEY=sk-your-api-key-here`
-
-## 📧 Email Service Options
-
-### Option 1: Gmail SMTP
-```
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASS=your_app_password
-EMAIL_FROM=your_email@gmail.com
-EMAIL_TO=connectme@myrsv.com
+OPENAI_API_KEY=your-openai-api-key
 ```
 
-### Option 2: SendGrid SMTP
+**Explanation:**
+- `OPENAI_API_KEY`: Your OpenAI API key for the AI chat functionality
+
+### 3. reCAPTCHA Configuration (Optional but Recommended)
 ```
-SMTP_HOST=smtp.sendgrid.net
-SMTP_PORT=587
-SMTP_USER=apikey
-SMTP_PASS=your_sendgrid_api_key
-EMAIL_FROM=noreply@myrsv.com
-EMAIL_TO=connectme@myrsv.com
+RECAPTCHA_SECRET_KEY=your-recaptcha-secret-key
 ```
 
-### Option 3: Outlook/Hotmail SMTP
-```
-SMTP_HOST=smtp-mail.outlook.com
-SMTP_PORT=587
-SMTP_USER=your_email@outlook.com
-SMTP_PASS=your_password
-EMAIL_FROM=your_email@outlook.com
-EMAIL_TO=connectme@myrsv.com
-```
+**Explanation:**
+- `RECAPTCHA_SECRET_KEY`: Google reCAPTCHA secret key for spam protection
 
-## 🔐 reCAPTCHA Setup
-
-1. **Go to [Google reCAPTCHA](https://www.google.com/recaptcha/admin)**
-2. **Create a new site**
-3. **Choose reCAPTCHA v3**
-4. **Add your domains:**
-   - `your-site.netlify.app`
-   - `myrsv.com` (if you have a custom domain)
-5. **Get your keys:**
-   - **Site Key**: Use for `VITE_RECAPTCHA_SITE_KEY`
-   - **Secret Key**: Use for `RECAPTCHA_SECRET_KEY`
-
-## 🚀 How to Set Environment Variables in Netlify
+## How to Set Environment Variables in Netlify
 
 ### Method 1: Netlify Dashboard
-1. Go to your site in [Netlify Dashboard](https://app.netlify.com)
-2. Click on **Site settings**
-3. Go to **Environment variables**
+1. Go to your Netlify dashboard
+2. Select your site
+3. Go to **Site settings** → **Environment variables**
 4. Click **Add a variable**
-5. Add each variable one by one
+5. Add each variable with its corresponding value
+6. Click **Save**
 
 ### Method 2: Netlify CLI
 ```bash
-# Install Netlify CLI
+# Install Netlify CLI if you haven't already
 npm install -g netlify-cli
 
 # Login to Netlify
 netlify login
 
 # Set environment variables
-netlify env:set SMTP_HOST smtp.gmail.com
+netlify env:set SMTP_HOST your-smtp-host.com
 netlify env:set SMTP_PORT 587
-netlify env:set SMTP_USER your_email@gmail.com
-netlify env:set SMTP_PASS your_app_password
-netlify env:set EMAIL_FROM your_email@gmail.com
+netlify env:set SMTP_USER your-smtp-username
+netlify env:set SMTP_PASS your-smtp-password
+netlify env:set EMAIL_FROM noreply@yourdomain.com
 netlify env:set EMAIL_TO connectme@myrsv.com
-netlify env:set OPENAI_API_KEY your_openai_api_key
-netlify env:set RECAPTCHA_SECRET_KEY your_secret_key
-netlify env:set VITE_RECAPTCHA_SITE_KEY your_site_key
+netlify env:set OPENAI_API_KEY your-openai-api-key
+netlify env:set RECAPTCHA_SECRET_KEY your-recaptcha-secret-key
 ```
 
-## 🔍 Testing Your Setup
+## Email Service Setup Examples
 
-### Test AI Chat
-1. Deploy your site to Netlify
-2. Click the chat bubble (bottom right)
-3. Type a message and check if you get a real AI response
-4. Check Netlify function logs for any errors
-
-### Test Contact Form
-1. Go to the contact form
-2. Fill out the form and submit
-3. Check if you receive the email
-4. Check Netlify function logs for any errors
-
-### Check Function Logs
-1. Go to your Netlify dashboard
-2. Click on **Functions**
-3. Click on the function you want to check
-4. Check the **Logs** tab for any errors
-
-## 🛠️ Troubleshooting
-
-### Common Issues:
-
-1. **AI Chat not working:**
-   - Check if `OPENAI_API_KEY` is set correctly
-   - Verify the API key is valid and has credits
-   - Check Netlify function logs for OpenAI API errors
-
-2. **Email not sending:**
-   - Check SMTP credentials
-   - Verify SMTP host and port
-   - Check if your email provider allows SMTP access
-
-3. **reCAPTCHA not working:**
-   - Verify site key and secret key
-   - Check domain configuration in reCAPTCHA admin
-   - Ensure keys are correctly set in environment variables
-
-4. **Function errors:**
-   - Check Netlify function logs
-   - Verify all environment variables are set
-   - Check if dependencies are properly installed
-
-### Gmail App Password Setup
-If using Gmail, you need to create an App Password:
-1. Go to Google Account settings
-2. Enable 2-factor authentication
-3. Go to Security → App passwords
-4. Generate a new app password
-5. Use this password in `SMTP_PASS`
-
-## 📝 Example Configuration
-
-Here's a complete example:
-
-```env
-# Email Configuration
+### Gmail Setup
+```
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASS=your_16_character_app_password
-EMAIL_FROM=your_email@gmail.com
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+EMAIL_FROM=your-email@gmail.com
 EMAIL_TO=connectme@myrsv.com
-
-# AI Chat Configuration
-OPENAI_API_KEY=sk-your-openai-api-key-here
-
-# reCAPTCHA Configuration
-RECAPTCHA_SECRET_KEY=6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-VITE_RECAPTCHA_SITE_KEY=6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-## 🔒 Security Notes
+**Note:** For Gmail, you need to use an App Password, not your regular password.
 
-- Never commit environment variables to Git
-- Use strong, unique passwords for SMTP
-- Keep your OpenAI API key secure
-- Regularly rotate your reCAPTCHA keys
-- Monitor function logs for suspicious activity
-- Consider using environment-specific configurations
+### Office 365 Setup
+```
+SMTP_HOST=smtp.office365.com
+SMTP_PORT=587
+SMTP_USER=your-email@yourdomain.com
+SMTP_PASS=your-password
+EMAIL_FROM=your-email@yourdomain.com
+EMAIL_TO=connectme@myrsv.com
+```
 
-## 📞 Support
+### Custom SMTP Setup
+```
+SMTP_HOST=mail.yourdomain.com
+SMTP_PORT=587
+SMTP_USER=noreply@yourdomain.com
+SMTP_PASS=your-smtp-password
+EMAIL_FROM=noreply@yourdomain.com
+EMAIL_TO=connectme@myrsv.com
+```
+
+## AI Chat Features
+
+The AI chat now includes the following features:
+
+1. **Intelligent Responses**: Uses OpenAI API to provide accurate information about RSV Infotech services
+2. **Contact Collection**: When visitors want to get in touch, the AI collects their details:
+   - Name (required)
+   - Email (required)
+   - Phone (optional)
+   - Message (required)
+3. **Email Sending**: Automatically sends collected contact information to connectme@myrsv.com
+4. **Website-Accurate Information**: Only provides information that exists on the RSV Infotech website
+
+## Testing Your Setup
+
+After setting up the environment variables:
+
+1. **Test Contact Form**: Go to the contact section and submit a test message
+2. **Test AI Chat**: Open the chat and ask questions about services
+3. **Test Contact Collection**: Ask the AI about contacting the team - it should collect your details
+
+## Troubleshooting
+
+### Email Not Sending
+- Check SMTP credentials
+- Verify SMTP host and port
+- Ensure EMAIL_FROM matches SMTP_USER
+- Check Netlify function logs for errors
+
+### AI Chat Not Working
+- Verify OPENAI_API_KEY is set correctly
+- Check Netlify function logs for API errors
+- Ensure the function is deployed properly
+
+### reCAPTCHA Issues
+- Verify RECAPTCHA_SECRET_KEY is correct
+- Check that the site key is properly configured in the frontend
+
+## Security Notes
+
+- Never commit environment variables to your repository
+- Use strong, unique passwords for SMTP accounts
+- Consider using app passwords for Gmail/Google accounts
+- Regularly rotate API keys and passwords
+- Monitor Netlify function logs for suspicious activity
+
+## Support
 
 If you encounter issues:
-1. Check Netlify's function logs
-2. Verify your local build works: `npm run build`
-3. Check the Netlify documentation: [docs.netlify.com](https://docs.netlify.com)
-4. Verify all environment variables are set correctly
-5. Test your SMTP configuration locally
-6. Check the reCAPTCHA configuration 
+1. Check Netlify function logs in the dashboard
+2. Verify all environment variables are set correctly
+3. Test with a simple email service first (like Gmail)
+4. Contact support if problems persist 

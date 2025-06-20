@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import axios from 'axios';
+const nodemailer = require('nodemailer');
+const axios = require('axios');
 
 // Email configuration
 const smtpConfig = {
@@ -115,7 +115,7 @@ ${data.message}
   }
 }
 
-export const handler = async (event, context) => {
+exports.handler = async (event, context) => {
   // Handle CORS preflight requests
   if (event.httpMethod === 'OPTIONS') {
     return {
