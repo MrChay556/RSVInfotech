@@ -12,6 +12,18 @@
   to = "/.netlify/functions/contact"
   status = 200
 
+# Redirect AI chat API to Netlify function
+[[redirects]]
+  from = "/api/ai-chat"
+  to = "/.netlify/functions/ai-chat"
+  status = 200
+
+# Test contact function for debugging
+[[redirects]]
+  from = "/api/test-contact"
+  to = "/.netlify/functions/test-contact"
+  status = 200
+
 # Redirect other API calls to the proxy function
 [[redirects]]
   from = "/api/*"

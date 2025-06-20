@@ -13,15 +13,16 @@ const Chatbot = () => {
     }
   ]);
   const [newMessage, setNewMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!newMessage.trim()) return;
+    if (!newMessage.trim() || isLoading) return;
     
     // Add user message
     const userMessage = {
@@ -30,17 +31,47 @@ const Chatbot = () => {
     };
     
     setMessages(prev => [...prev, userMessage]);
+    const currentMessage = newMessage;
     setNewMessage("");
+    setIsLoading(true);
     
-    // Simulate bot response after delay
-    setTimeout(() => {
-      const botResponse = {
-        sender: "bot",
-        message: "Thank you for your message. One of our representatives will get back to you shortly. Is there anything else you'd like to know about our services?"
-      };
+    try {
+      // Call the AI chat function
+      const response = await fetch('/.netlify/functions/ai-chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: currentMessage }),
+      });
       
-      setMessages(prev => [...prev, botResponse]);
-    }, 1000);
+      const data = await response.json();
+      
+      if (data.success) {
+        const botResponse = {
+          sender: "bot",
+          message: data.message
+        };
+        setMessages(prev => [...prev, botResponse]);
+      } else {
+        // Fallback response if AI fails
+        const fallbackResponse = {
+          sender: "bot",
+          message: "I'm sorry, I'm having trouble processing your request. Please try again or contact our team directly."
+        };
+        setMessages(prev => [...prev, fallbackResponse]);
+      }
+    } catch (error) {
+      console.error('Error calling AI chat:', error);
+      // Fallback response on error
+      const errorResponse = {
+        sender: "bot",
+        message: "I'm sorry, I'm having trouble connecting right now. Please contact our team directly for assistance."
+      };
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -76,10 +107,24 @@ const Chatbot = () => {
                       ? 'bg-muted text-foreground/90' 
                       : 'bg-gradient-to-r from-primary to-secondary text-white'
                   }`}>
-                    <p>{msg.message}</p>
+                    <p style={{ whiteSpace: 'pre-line' }}>{msg.message}</p>
                   </div>
                 </div>
               ))}
+              {isLoading && (
+                <div className="flex items-start mb-4">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-3 flex-shrink-0">
+                    <span className="font-orbitron font-bold text-xs text-white">AI</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-muted text-foreground/90">
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="p-4 border-t border-white/10">
               <form className="flex items-center" onSubmit={handleSendMessage}>
@@ -88,11 +133,13 @@ const Chatbot = () => {
                   placeholder="Type your message..." 
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  className="flex-1 px-4 py-2 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors"
+                  disabled={isLoading}
+                  className="flex-1 px-4 py-2 rounded-lg bg-background border border-white/20 text-foreground focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
                 />
                 <Button 
                   type="submit"
-                  className="ml-2 p-2 rounded-full bg-gradient-to-r from-primary to-secondary"
+                  disabled={isLoading || !newMessage.trim()}
+                  className="ml-2 p-2 rounded-full bg-gradient-to-r from-primary to-secondary disabled:opacity-50"
                 >
                   <Send className="h-5 w-5 text-white" />
                 </Button>
